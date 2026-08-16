@@ -98,7 +98,7 @@ Living checklist. All items start unchecked.
 - [x] **Phase 2 — Baseline RAG:** Embeddings, Chroma store, dense retrieval, Groq generation with citations, FastAPI research route.
 - [ ] **Phase 3 — Evaluation & ablation study:** Golden-set runner and RAGAS-style metrics exist under `eval/`; full four-config ablation not yet completed (Groq daily quota).
 - [x] **Phase 4 — Guardrails:** Query-side refusals, retrieval-floor skip, prompt-injection hardening, disclaimer on every API response; adversarial items scored with a rule-based heuristic.
-- [ ] **Phase 5 — Chat UX:** Streamlit research chat over the API, showing answers and source chunks.
+- [x] **Phase 5 — Chat UX:** Streamlit research chat over `POST /api/research`, citations, disclaimer, corpus sidebar. Decoupled from retrieval config.
 - [ ] **Phase 6 — Production hardening:** Config, logging, error handling, tests, and CI that match the real pipeline.
 - [ ] **Phase 7 — Deploy & document:** Render + Streamlit Cloud, data-source log, and the full README.
 

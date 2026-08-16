@@ -10,6 +10,18 @@ app = FastAPI(title="InvestIQ", version="0.4.0")
 app.include_router(research_router)
 
 
+@app.get("/")
+def root() -> dict:
+    """Browser-friendly index. Chat lives in Streamlit, not on this port."""
+    return {
+        "service": "InvestIQ API",
+        "health": "/health",
+        "docs": "/docs",
+        "research": "POST /api/research",
+        "ui": "Run Streamlit on a different port (default 8501): streamlit run frontend/streamlit_app.py",
+    }
+
+
 @app.get("/health")
 def health() -> dict:
     """Liveness; includes Chroma size when the index exists."""
