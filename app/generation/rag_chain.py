@@ -34,9 +34,18 @@ class RagUnavailableError(RuntimeError):
     """Groq is down or rate-limited; the API layer maps this to HTTP 503."""
 
 
-def run_rag(query: str, k: int | None = None) -> ResearchResponse:
-    """Execute the baseline RAG pipeline for a single query."""
-    hits = dense_query(query, k=k)
+def run_rag(
+    query: str,
+    k: int | None = None,
+    hits: list[RetrievedChunk] | None = None,
+    retrieve_fn=None,
+) -> ResearchResponse:
+    """Execute RAG: retrieve (or use provided hits) -> Groq JSON answer + citations."""
+    if hits is None:
+        if retrieve_fn is not None:
+            hits = retrieve_fn(query)
+        else:
+            hits = dense_query(query, k=k)
     if not hits:
         return ResearchResponse(answer=_NOT_FOUND, citations=[])
     try:

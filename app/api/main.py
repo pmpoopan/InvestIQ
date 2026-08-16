@@ -6,7 +6,7 @@ from fastapi import FastAPI
 
 from app.api.routes.research import router as research_router
 
-app = FastAPI(title="InvestIQ", version="0.2.0")
+app = FastAPI(title="InvestIQ", version="0.4.0")
 app.include_router(research_router)
 
 

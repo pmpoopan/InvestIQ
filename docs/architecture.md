@@ -31,9 +31,12 @@ flowchart LR
         H[Hybrid + reranked]
     end
 
+    subgraph rails [Guardrails]
+        GR[Query policy + relevance floor]
+    end
+
     subgraph serve [Serve]
         G[Generation with citations]
-        GR[Guardrails]
         API[FastAPI]
         UI[Streamlit frontend]
         DEP[Deploy: Render + Streamlit Cloud]
@@ -46,14 +49,15 @@ flowchart LR
     P --> C --> M --> E --> VS
     VS --> B
     VS --> H
-    B --> G
-    H --> G
-    G --> GR --> API --> UI --> DEP
+    B --> GR
+    H --> GR
+    GR --> G
+    G --> API --> UI --> DEP
 ```
 
 
 
-Planned path: drop PDFs under `data/raw/` → type-specific parsers → chunkers → metadata tagging → embeddings → Chroma vector store → retrieval (baseline dense first; hybrid BM25 + dense with rerank in the ablation study) → generation with citations → guardrails → FastAPI → Streamlit → Render (API) and Streamlit Cloud (UI).
+Planned path: drop PDFs under `data/raw/` → type-specific parsers → chunkers → metadata tagging → embeddings → Chroma vector store → retrieval (baseline dense first; hybrid BM25 + dense with rerank in the ablation study) → guardrails (query policy + relevance floor, wrapping whichever retriever is wired) → generation with citations → FastAPI → Streamlit → Render (API) and Streamlit Cloud (UI).
 
 ## Document types and why they are treated differently
 
@@ -78,7 +82,7 @@ Planned path: drop PDFs under `data/raw/` → type-specific parsers → chunkers
 | sentence-transformers | Local, reproducible dense embeddings so index quality is not tied to a paid embed API.              |
 | Chroma                | Lightweight persistent vector store that fits a small corpus and local/dev-first workflow.          |
 | rank_bm25             | Lexical baseline for hybrid retrieval; strong on clause numbers, scheme names, and legal phrasing.  |
-| RAGAS                 | Standard RAG metrics (faithfulness, context precision/recall) for comparable ablation runs.         |
+| RAGAS-style metrics   | Faithfulness / context precision / recall / answer relevancy. The `ragas` package currently fails to import (`langchain_community.chat_models.vertexai`); InvestIQ uses Groq-as-judge wrappers in `eval/metrics.py`. DeepEval is the closest packaged alternative. |
 | Streamlit             | Fast chat UX for citations and qualitative inspection of retrieval, not a product frontend rewrite. |
 | Render                | Host the FastAPI service with a conventional Python deploy path.                                    |
 | Streamlit Cloud       | Host the UI separately so API and chat can scale/fail independently.                                |
@@ -90,10 +94,10 @@ Planned path: drop PDFs under `data/raw/` → type-specific parsers → chunkers
 
 Living checklist. All items start unchecked.
 
-- [ ] **Phase 1 — Ingestion & chunking:** Parse SIDs, factsheets, DRHPs, and SEBI text; chunk and tag metadata; write processed artifacts.
-- [ ] **Phase 2 — Baseline RAG:** Embeddings, Chroma store, dense retrieval, Groq generation with citations, FastAPI research route.
-- [ ] **Phase 3 — Evaluation & ablation study:** Golden-set runner, RAGAS/custom metrics, dense vs hybrid+rerank (and related ablations), results under `eval/results/`.
-- [ ] **Phase 4 — Guardrails:** Refusal/grounding checks, citation requirements, unsafe or out-of-corpus handling before answers reach the user.
+- [x] **Phase 1 — Ingestion & chunking:** Parse SIDs, factsheets, DRHPs, and SEBI text; chunk and tag metadata; write processed artifacts.
+- [x] **Phase 2 — Baseline RAG:** Embeddings, Chroma store, dense retrieval, Groq generation with citations, FastAPI research route.
+- [ ] **Phase 3 — Evaluation & ablation study:** Golden-set runner and RAGAS-style metrics exist under `eval/`; full four-config ablation not yet completed (Groq daily quota).
+- [x] **Phase 4 — Guardrails:** Query-side refusals, retrieval-floor skip, prompt-injection hardening, disclaimer on every API response; adversarial items scored with a rule-based heuristic.
 - [ ] **Phase 5 — Chat UX:** Streamlit research chat over the API, showing answers and source chunks.
 - [ ] **Phase 6 — Production hardening:** Config, logging, error handling, tests, and CI that match the real pipeline.
 - [ ] **Phase 7 — Deploy & document:** Render + Streamlit Cloud, data-source log, and the full README.

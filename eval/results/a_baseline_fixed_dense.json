@@ -1,0 +1,1305 @@
+{
+  "meta": {
+    "created_at": "2026-08-16T12:56:23.823935+00:00",
+    "config": {
+      "id": "a_baseline_fixed_dense",
+      "label": "A — Baseline (fixed-size, dense-only, top_k=5)",
+      "chunking": "fixed_size",
+      "retrieval": "dense",
+      "rerank": false,
+      "top_k": 5
+    },
+    "embedding_model": "BAAI/bge-small-en-v1.5",
+    "groq_model": "openai/gpt-oss-120b",
+    "metrics": "ragas-style (custom Groq judge; ragas package import-broken)"
+  },
+  "summary": {
+    "overall": {
+      "faithfulness": 0.8653340123928359,
+      "context_precision": 0.4513020833333333,
+      "context_recall": 0.5178571428571429,
+      "answer_relevancy": 0.7999946419785886,
+      "n": 19
+    },
+    "by_category": {
+      "factual_lookup": {
+        "faithfulness": 0.9,
+        "context_precision": 0.23333333333333334,
+        "context_recall": null,
+        "answer_relevancy": 0.7899144698071052,
+        "n": 10,
+        "n_with_ground_truth": 0
+      },
+      "definitional": {
+        "faithfulness": 0.81581117295403,
+        "context_precision": 0.8145833333333333,
+        "context_recall": 0.5178571428571429,
+        "answer_relevancy": 0.8167949289310611,
+        "n": 9,
+        "n_with_ground_truth": 9
+      },
+      "multi_document_synthesis": {
+        "faithfulness": null,
+        "context_precision": null,
+        "context_recall": null,
+        "answer_relevancy": null,
+        "n": 0,
+        "n_with_ground_truth": 0
+      },
+      "adversarial_out_of_scope": {
+        "faithfulness": null,
+        "context_precision": null,
+        "context_recall": null,
+        "answer_relevancy": null,
+        "n": 0,
+        "n_with_ground_truth": 0
+      }
+    },
+    "n_placeholder": 10,
+    "n_scored_recall": 6
+  },
+  "results": [
+    {
+      "id": "fact_01",
+      "category": "factual_lookup",
+      "question": "What is the exit load on Fund A if I redeem within 1 year of investment?",
+      "expected_answer": "[FILL IN FROM ACTUAL SID ONCE COLLECTED — e.g. '1% if redeemed within 365 days from allotment, nil thereafter'. Copy the exact clause language from the SID's Load Structure section.]",
+      "no_ground_truth_answer_yet": true,
+      "answer": "I do not have that document in the corpus.",
+      "citations": [],
+      "retrieved": [
+        {
+          "chunk_id": "sid:sid---sbi-focused-fund:0034",
+          "score": 0.7835848331451416,
+          "source_document": "sid---sbi-focused-fund.pdf",
+          "document_type": "sid",
+          "page_number": "14-16",
+          "section_heading": "H. ADDITIONAL SCHEME RELATED DISCLOSURES",
+          "text": "NAV * (1 - Exit Load)\nSay, in the above example the exit load applicable is:\na.\nFor exit on or before 12 months from the date of allotment – 1.00%\nb.\nFor exit after 12 months from the date of allotment – Nil.\nScenario 1: Redemption is done during applicability of exit load\nIn case the investor requests for redemption on or before 12 months i.e. on or before March 31, 2019; say\nDecember 1, 2018, when the NAV of the scheme is Rs. 12/- and the exit load applicable is 1%, so the\nRedemption amount payable to investor shall be calculated as follows:\nRedemption Price = Applicable NAV * (1 - Exit Load)\n= Rs. 12 * (1-1%) = Rs. 11.88/-\nScenario 2: Redemption is done when the exit load is NIL\nIn case the investor requests for redemption after 12 months i.e. after March 31, 2019; say April 1, 2019,\nwhen the NAV of the scheme is Rs. 12/- and the exit load applicable is NIL, so the Redemption amount\npayable to investor shall be calculated as follows:\nRedemption Price = Applicable NAV * (1 - Exit Load)\n= Rs. 12 * (1-0) = Rs. 12/-\nThe aforesaid example does not take into consideration any applicable statutory levies or taxes."
+        },
+        {
+          "chunk_id": "sid:sid---sbi-midcap-fund:0037",
+          "score": 0.7835847735404968,
+          "source_document": "sid---sbi-midcap-fund.pdf",
+          "document_type": "sid",
+          "page_number": "14-17",
+          "section_heading": "H. ADDITIONAL SCHEME RELATED DISCLOSURES",
+          "text": "NAV * (1 - Exit Load)\nSay, in the above example the exit load applicable is:\na.\nFor exit on or before 12 months from the date of allotment – 1.00%\nb.\nFor exit after 12 months from the date of allotment – Nil.\nScenario 1: Redemption is done during applicability of exit load\nIn case the investor requests for redemption on or before 12 months i.e. on or before March 31, 2019; say December\n1, 2018, when the NAV of the scheme is Rs. 12/- and the exit load applicable is 1%, so the Redemption amount\npayable to investor shall be calculated as follows:\nRedemption Price = Applicable NAV * (1 - Exit Load)\n= Rs. 12 * (1-1%) = Rs. 11.88/-\nScenario 2: Redemption is done when the exit load is NIL\nIn case the investor requests for redemption after 12 months i.e. after March 31, 2019; say April 1, 2019, when the\nNAV of the scheme is Rs. 12/- and the exit load applicable is NIL, so the Redemption amount payable to investor\nshall be calculated as follows:\nRedemption Price = Applicable NAV * (1 - Exit Load)\n= Rs. 12 * (1-0) = Rs. 12/-\nThe aforesaid example does not take into consideration any applicable statutory levies or taxes."
+        },
+        {
+          "chunk_id": "sid:sid---sbi-small-cap-fund:0049",
+          "score": 0.7833328247070312,
+          "source_document": "sid---sbi-small-cap-fund.pdf",
+          "document_type": "sid",
+          "page_number": "19",
+          "section_heading": "C. ANNUAL SCHEME RECURRING EXPENSES",
+          "text": "se considered above.\nAny other information/disclosure to be added as per applicable Consolidated checklist of standard\nobservations.\nD.\nLOAD STRUCTURE\nExit Load is an amount which is paid by the investor to redeem the units from the scheme. Load amounts are\nvariable and are subject to change from time to time. For the current applicable structure, please refer to the\nwebsite of the AMC (www.sbimf.com) or may call at (toll free no. 1800 209 3333/1800 425 5425.) or your\ndistributor."
+        },
+        {
+          "chunk_id": "factsheet:Fund Facts - HDFC Flexi Cap Fund_July 26:0014",
+          "score": 0.7767244577407837,
+          "source_document": "Fund Facts - HDFC Flexi Cap Fund_July 26.pdf",
+          "document_type": "factsheet",
+          "page_number": "3",
+          "section_heading": "Top 10 Sectoral Trend (as on 30th June, 2026)",
+          "text": "curity covered under the respective sector/stocks/themes. The Fund may or may not have any present or future positions in these stocks/sectors/themes.\n$$ Exit Load: (i) No Exit Load shall be levied for switching between Plans / Options within the Scheme. However, exit load will be applicable if the units are switched-out / redeemed from the Scheme within the\nexit load period from the initial date of purchase. (ii) No Exit load will be levied on bonus Units and on units allotted on Re-investment of Income Distribution cum Capital Withdrawal. (iii) No Exit load will be levied\non Units allotted in the Target Scheme under the Transfer of Income Distribution cum Capital Withdrawal (IDCW) Plan Facility (TIP Facility). (iv) In case of Systematic Transactions such as Systematic Investment\nPlan (SIP), Flex Systematic Investment Plan (Flex SIP), Systematic Transfer Plan (STP), HDFC Flex Systematic Transfer Plan (Flex STP), HDFC Swing Systematic Transfer Plan (Swing STP), HDFC Flexindex Plan\n(Flexindex) etc., Exit Load, if any, prevailing on the date of registration / enrolment shall be levied.\nMUTUAL FUND INVESTMENTS ARE SUBJECT TO MARKET RISKS, READ ALL SCHEME RELATED DOCUMENTS CAREFULLY."
+        },
+        {
+          "chunk_id": "sid:SID - HDFC Small Cap Fund dated November 21, 2025_0:0061",
+          "score": 0.7709887027740479,
+          "source_document": "SID - HDFC Small Cap Fund dated November 21, 2025_0.pdf",
+          "document_type": "sid",
+          "page_number": "23-41",
+          "section_heading": "C. LOAD STRUCTURE",
+          "text": "No Entry Load will be charged.\n(i) No Exit Load shall be levied for switching between Plans / Options within the Scheme. However, exit load\nwill be applicable if the units are switched-out / redeemed from the Scheme within the exit load period\nfrom the initial date of purchase.\n(ii) No Exit load will be levied on bonus Units and on units allotted on Re-investment of Income Distribution\ncum Capital Withdrawal.\n(iii) No Exit load will be levied on Units allotted in the Target Scheme under the Transfer of Income Distribution\ncum Capital Withdrawal (IDCW) Plan Facility (TIP Facility).\n(iv) In case of Systematic Transactions such as Systematic Investment Plan (SIP), Flex Systematic\nInvestment Plan (Flex SIP), Systematic Transfer Plan (STP), HDFC Flex Systematic Transfer Plan\n(Flex STP), HDFC Swing Systematic Transfer Plan (Swing STP), HDFC Flexindex Plan (Flexindex)\netc., Exit Load, if any, prevailing on the date of registration / enrolment shall be levied.\n23\nHDFC Small Cap Fund-SID\nThe AMC/ Trustee if it so deems fit in the interest of smooth and efficient functioning of the Mutual Fund"
+        }
+      ],
+      "error": null,
+      "faithfulness": 0.0,
+      "context_precision": 1.0,
+      "context_recall": null,
+      "answer_relevancy": 0.5147660497439918
+    },
+    {
+      "id": "fact_02",
+      "category": "factual_lookup",
+      "question": "What is the expense ratio (TER) of Fund B as per its latest factsheet?",
+      "expected_answer": "[FILL IN FROM ACTUAL FACTSHEET — cite the exact TER % and the 'as of' date printed on the factsheet, since TER changes month to month.]",
+      "no_ground_truth_answer_yet": true,
+      "answer": "I do not have a factsheet for a fund named \"Fund B\" in the provided documents, so I cannot provide its expense ratio (TER).",
+      "citations": [],
+      "retrieved": [
+        {
+          "chunk_id": "sid:sid---sbi-midcap-fund:0043",
+          "score": 0.7172937393188477,
+          "source_document": "sid---sbi-midcap-fund.pdf",
+          "document_type": "sid",
+          "page_number": "17-18",
+          "section_heading": "C. ANNUAL SCHEME RECURRING EXPENSES",
+          "text": "be as per the SEBI (Mutual Funds) Regulations, 1996.\nFor investor education and awareness initiative, the AMC or the Schemes of the Fund will annually\nset apart at least 0.02 percent of daily net asset of the Schemes of the Fund within the maximum\nlimit of the total expense ratio as per SEBI Regulation\nPursuant to SEBI Notification dated December 13, 2018, the maximum total expenses of the\nscheme under Regulation 52(6)(c) shall be subject to following limits"
+        },
+        {
+          "chunk_id": "sid:sid---sbi-small-cap-fund:0039",
+          "score": 0.7136610150337219,
+          "source_document": "sid---sbi-small-cap-fund.pdf",
+          "document_type": "sid",
+          "page_number": "17",
+          "section_heading": "C. ANNUAL SCHEME RECURRING EXPENSES",
+          "text": "[TABLE]\nCost towards investor education & awareness | \nBrokerage & transaction cost pertaining to distribution of units | \nGoods & Services Tax on expenses other than investment and advisory fees | \nGoods & Services Tax on brokerage and transaction cost | \nOther Expenses (to be specified as per Reg 52 of SEBI MF Regulations) | \nMaximum Total expenses ratio (TER) permissible under Regulation 52 (6) c) | Upto 2.25%\nAdditional expenses under Regulations 52(6A)(c) | Upto 0.05%\nAdditional expenses for gross new inflows from specified cities | Upto 0.30%"
+        },
+        {
+          "chunk_id": "sid:sid---sbi-midcap-fund:0046",
+          "score": 0.7135495543479919,
+          "source_document": "sid---sbi-midcap-fund.pdf",
+          "document_type": "sid",
+          "page_number": "18-19",
+          "section_heading": "C. ANNUAL SCHEME RECURRING EXPENSES",
+          "text": "st, over and above the said 12 bps and 5bps\nfor cash market transactions and derivatives transactions respectively may be charged to the scheme within\nthe maximum limit of Total Expense Ratio (TER) as prescribed under regulation 52 of the SEBI (Mutual Funds)\nRegulations, 1996. Goods & Service tax on brokerage and transaction cost paid for execution of trade, if any,\nshall be within the limit prescribed under regulation 52 of the Regulations.\n3. Expenses not exceeding of 0.30 per cent of daily net assets, if the new inflows from such cities as\nspecified from time to time are at least –\n- 30 percent of gross new inflows in the scheme, or;\n- 15 percent of the average assets under management (year to date) of the scheme, whichever is higher:\nProvided that if inflows from such cities is less than the higher of sub-clause (i) or sub- clause (ii), such\nexpenses on daily net assets of the scheme shall be charged on proportionate basis:\nProvided further that expenses charged under this clause shall be utilised for distribution expenses incurred\nfor bringing inflows from such cities:\nProvided further that amount incurred as expense on account of inflows from such cities shall be credited"
+        },
+        {
+          "chunk_id": "sid:sid---sbi-focused-fund:0043",
+          "score": 0.708633542060852,
+          "source_document": "sid---sbi-focused-fund.pdf",
+          "document_type": "sid",
+          "page_number": "17-18",
+          "section_heading": "C. ANNUAL SCHEME RECURRING EXPENSES",
+          "text": "ense Ratio (TER) as prescribed under regulation 52 of\nthe SEBI (Mutual Funds) Regulations, 1996. Goods & Service tax on brokerage and transaction cost\npaid for execution of trade, if any, shall be within the limit prescribed under regulation 52 of the\nRegulations\n• In terms of Regulation 52 (6A) (b), expenses not exceeding of 0.30 per cent of daily net assets will be\ncharged, if the new inflows from such cities as specified from time to time are at least –\n(i)\n30 percent of gross new inflows in the scheme, or;\n(ii)\n15 percent of the average assets under management (year to date) of the scheme, whichever is\nhigher:\nProvided that if inflows from such cities is less than the higher of sub-clause (i) or sub- clause (ii),\nsuch expenses on daily net assets of the scheme shall be charged on proportionate basis:\nProvided further that expenses charged under this clause shall be utilised for distribution expenses\nincurred for bringing inflows from such cities:\nProvided further that amount incurred as expense on account of inflows from such cities shall be credited\nback to the scheme in case the said inflows are redeemed within a period of one year from the date of\ninvestment."
+        },
+        {
+          "chunk_id": "sid:SID - HDFC Mid Cap Fund dated November 21, 2025_1:0049",
+          "score": 0.707297146320343,
+          "source_document": "SID - HDFC Mid Cap Fund dated November 21, 2025_1.pdf",
+          "document_type": "sid",
+          "page_number": "20-21",
+          "section_heading": "A. COMPUTATION OF NAV",
+          "text": "ing costs etc. as given in the table below.\nThe AMC has estimated that upto 2.25 % of the daily net assets of the scheme will be charged to the scheme\nas expenses. For the actual current expenses being charged, the investor should refer to the website of the\nmutual fund.\nMaximum Total Expense Ratio under Regulation 52 (6):\nOn the first Rs.500 crores of the daily net assets - 2.25% p.a.\nOn the next Rs.250 crores of the daily net assets - 2.00% p.a.\nOn the next Rs.1,250 crores of the daily net assets - 1.75% p.a.\nOn the next Rs.3,000 crores of the daily net assets - 1.60% p.a.\nOn the next Rs.5,000 crores of the daily net assets - 1.50% p.a.\nOn the next Rs.40,000 crores of the daily net assets - Total expense ratio reduction of 0.05% for every\nincrease of Rs.5,000 crores of daily net assets or part thereof.\nOn balance of the assets - 1.05% p.a.\n21\nHDFC Mid Cap Fund-SID"
+        }
+      ],
+      "error": null,
+      "faithfulness": 1.0,
+      "context_precision": 0.0,
+      "context_recall": null,
+      "answer_relevancy": 0.862840802627384
+    },
+    {
+      "id": "fact_03",
+      "category": "factual_lookup",
+      "question": "Who is the fund manager for Fund C, and since when have they managed it?",
+      "expected_answer": "[FILL IN FROM SID/KIM — Fund Manager Details section]",
+      "no_ground_truth_answer_yet": true,
+      "answer": "I do not have information about a fund named \"Fund C\" in the provided documents.",
+      "citations": [],
+      "retrieved": [
+        {
+          "chunk_id": "sid:SID - HDFC Mid Cap Fund dated November 21, 2025_1:0031",
+          "score": 0.679444432258606,
+          "source_document": "SID - HDFC Mid Cap Fund dated November 21, 2025_1.pdf",
+          "document_type": "sid",
+          "page_number": "14",
+          "section_heading": "E. WHO MANAGES THE SCHEME?",
+          "text": "[TABLE]\nName, Age & tenure^ | Educational Qualifications | Experience (last 10 years) | Other Fund(s) Managed*\nChirag Setalvad 51 Years Tenure for managing the Scheme: 18 years, 3 months | B.Sc. in Business Administration - University of North Carolina, Chapel Hill. | Collectively over 29 years experience in experience, of which 25 years in Fund Management and Equity Research and 4 years in investment banking March 19, 2007 till Date: HDFC Asset Management Company Limited | 1. HDFC Children's Fund (co-managed Scheme) 2. HDFC Small Cap Fund"
+        },
+        {
+          "chunk_id": "sid:SID - HDFC Flexi Cap Fund dated November 21, 2025_0:0031",
+          "score": 0.6749600768089294,
+          "source_document": "SID - HDFC Flexi Cap Fund dated November 21, 2025_0.pdf",
+          "document_type": "sid",
+          "page_number": "15",
+          "section_heading": "E. WHO MANAGES THE SCHEME?",
+          "text": "[TABLE]\nName, Age & tenure^ | Educational Qualifications | Experience (last 10 years) | Other Fund(s) Managed*\nRoshi Jain 48 Years Tenure for managing the Scheme: 3 years, 2 months | CA (ICAI, INDIA) CFA (CFA Institute, USA) PGDM (IIM A) | Collectively over 20 years experience in Equity Research and Fund Management December 20, 2021 till Date: HDFC Asset Management Company Limited May 2, 2005 till October 31, 2021: Franklin Templeton Asset Management (India) Pvt. Ltd. Last Position Held: Vice President & Portfolio Manager | 1. HDFC ELSS Tax Saver 2. HDFC Focused Fund"
+        },
+        {
+          "chunk_id": "sid:sid---sbi-small-cap-fund:0024",
+          "score": 0.661516547203064,
+          "source_document": "sid---sbi-small-cap-fund.pdf",
+          "document_type": "sid",
+          "page_number": "11",
+          "section_heading": "A. HOW WILL THE SCHEME ALLOCATE ITS ASSETS?",
+          "text": "[TABLE]\nName of the Fund Manager, Age & tenure of managing the scheme | Educational Qualifications | Experience\nMr. R. Srinivasan Age : 52 Years Tenure of Managing the Scheme :12 Years and Managing since November 2013 | M.Com & MFM | Experience of more than 29 years in equities. Prior to joining SBI Funds Management Pvt. Ltd., Srinivasan was with Future Capital Holdings, the erstwhile asset management and financial services entity of the Future Group, where The headed ‘Public Markets’. Prior to that, The has worked with several organizations including Principal PNB AMC, Imperial Investment Advisors (associate of Oppenheimer & Co), Indosuez W. I. Carr Securities, Motilal Oswal Securities, Sunidhi Consultancy and Capital Market Publishers. Presently, Srinivasan is the Fund Manager for SBI Equity Hybrid Fund (equity portion), SBI Focused Fund, SBI Flexicap Fund, SBI Small Cap Fund, SBI MNC Fund, SBI Multicap Fund, SBI Magnum Children's Benefit Fund - Savings Plan (Equity Portion) and SBI Magnum Children's Benefit Fund - Investment Plan.\""
+        },
+        {
+          "chunk_id": "sid:SID - HDFC Small Cap Fund dated November 21, 2025_0:0030",
+          "score": 0.6600140333175659,
+          "source_document": "SID - HDFC Small Cap Fund dated November 21, 2025_0.pdf",
+          "document_type": "sid",
+          "page_number": "13",
+          "section_heading": "E. WHO MANAGES THE SCHEME?",
+          "text": "[TABLE]\nName, Age & tenure^ | Educational Qualifications | Experience (last 10 years) | Other Fund(s) Managed*\nChirag Setalvad 51 Years Tenure for | B.Sc. in Business Administration - University of North Carolina, Chapel Hill. | Collectively over 29 years experience in experience, of which 25 years in Fund Management and | 1. HDFC Children's Fund (co-managed Scheme) 2. HDFC Mid Cap Fund"
+        },
+        {
+          "chunk_id": "sid:SID - HDFC Small Cap Fund dated November 21, 2025_0:0033",
+          "score": 0.6577916145324707,
+          "source_document": "SID - HDFC Small Cap Fund dated November 21, 2025_0.pdf",
+          "document_type": "sid",
+          "page_number": "14",
+          "section_heading": "E. WHO MANAGES THE SCHEME?",
+          "text": "[TABLE]\nDedicated Fund Manager for Overseas Investments: | | | \nName, Age & tenure^ | Educational Qualifications | Experience (last 10 years) | Other Fund(s) Managed*\nDhruv Muchhal 37 Years Tenure for managing the Scheme: 2 years, 3 months | CFA (CFA Institute) Chartered Accountant B Com. from University of Mumbai | Collectively over 14 years experience in FREquity research October 3, 2019 till Date: HDFC Asset Management Company Limited August 27, 2014 till September 27, 2019: Motilal Oswal Financial Services Limited Last Position Held-Associate Vice President - Research August 12, 2013 till August 24, 2014: Goldman Sachs (India) Securities Private Limited Last Position Held - Research Analyst November 8, 2010 till August 8, 2013: Crisil Limited Last Position Held - Senior Research Analyst - Irevna FR-Equity Research | 1. HDFC Arbitrage Fund (co- managed Scheme) 2. HDFC Balanced Advantage Fund (co-managed Scheme) 3. HDFC Banking & Financial Services Fund 4. HDFC Banking and PSU Debt Fund 5. HDFC Business Cycle Fund 6. HDFC Charity Fund for Cancer Cure 7. HDFC Children's Fund (co- managed Scheme) 8. HDFC Corporate Bond Fund 9. HDFC Credit Risk Debt Fund 10. HDFC Defence Fund (co- managed Scheme) 11. HDFC Dividend Yield Fund 12. HDFC Dynamic Debt Fund 13. HDFC ELSS Tax Saver 14. HDFC Equity Savings Fund (co-managed Scheme) 15. HDFC Flexi Cap Fund 16. HDFC Floating Rate Debt Fund 17. HDFC Focused Fund 18. HDFC Gilt Fund 19. HDFC Housing Opportunities Fund 20. HDFC Hybrid Debt Fund (co- managed Scheme) 21. HDFC Hybrid Equity Fund (co- managed Scheme) 22. HDFC Income Fund 23. HDFC Infrastructure Fund 24. HDFC Innovation Fund"
+        }
+      ],
+      "error": null,
+      "faithfulness": 1.0,
+      "context_precision": 0.0,
+      "context_recall": null,
+      "answer_relevancy": 0.7257569883927734
+    },
+    {
+      "id": "fact_04",
+      "category": "factual_lookup",
+      "question": "What is the minimum SIP investment amount for Fund A?",
+      "expected_answer": "[FILL IN FROM SID — Minimum Application Amount section]",
+      "no_ground_truth_answer_yet": true,
+      "answer": "I do not have a document for Fund A in the provided corpus, so I cannot provide the minimum SIP investment amount for that fund.",
+      "citations": [],
+      "retrieved": [
+        {
+          "chunk_id": "sid:sid---sbi-midcap-fund:0127",
+          "score": 0.8090198636054993,
+          "source_document": "sid---sbi-midcap-fund.pdf",
+          "document_type": "sid",
+          "page_number": "53",
+          "section_heading": "F. Floors and ceiling within a range of 5% of the intended allocation against each sub class",
+          "text": "[TABLE]\n | 1. Minimum Investment Amount: INR 500 and multiples of INR 1 thereafter. Minimum number of instalments would be 12. 2. SIP Top up facility would not be available under this facility 3. Investors enrolling for Daily SIP should select “As & when presented” as payment frequency in the OTM. b) Terms & conditions for Monthly, Quarterly, Semi- Annual and Annual Systematic investment plan are as follows: Monthly – Minimum Rs. 1000 & in multiples of Re. 1 thereafter for minimum 6 months or Minimum Rs. 500 & in multiples of Re. 1 thereafter for minimum 12 months Quarterly - Minimum Rs. 1500 & in multiples of Re. 1 thereafter for minimum 1 year Semi-annual and Annual Systematic Investment Plan - Minimum amount of investment will be Rs. 3,000 and in multiples of Re.1 thereafter for Semi-Annual SIP & Rs. 5,000 and in multiples of Re.1 thereafter in case of Annual SIP. Minimum number of installments will be 4. c) Weekly Systematic Investment Plan The terms & conditions for the weekly SIP are as follows: 1) Minimum amount for weekly SIP : - Rs. 1000 and in multiples of Re.1 thereafter with minimum number of 6 installments. - Rs. 500 and in multiples of Re.1 thereafter with minimum number of 12 installments 2) Date based feature - Weekly SIP will be done on 1st, 8th, 15th & 22nd of the month 3) In case the date of SIP falls on a Non-Business Day, then the immediate following Business Day will be considered for the purpose of transfer. 4) In Day based feature, investors may select any Day of the Week viz. Monday/ Tuesday/ Wednesday/ Thursday/ Friday on which Weekly SIP/STP/SWP instalment shall be processed and in case any of these days is a non- NonBusiness day then the immediate next NonBusiness day will be considered for processing. 5) In case investor selects Weekly frequency and also selects both Day based and Date -based Weekly SIP, default will be considered as ‘Day based Weekly SIP. 6) In case investor selects Weekly frequency and does not select Day based or Date -based Weekly SIP, default will be considered as ‘Day based Weekly SIP. 7) If investor selects Day based Weekly SIP but does not mention ‘Day’ on which the Weekly SIP instalment to be processed, then ‘Wednesday’ will be considered as the default Day."
+        },
+        {
+          "chunk_id": "sid:sid---sbi-focused-fund:0107",
+          "score": 0.8071532845497131,
+          "source_document": "sid---sbi-focused-fund.pdf",
+          "document_type": "sid",
+          "page_number": "46",
+          "section_heading": "G. Other Scheme Specific Disclosures",
+          "text": "[TABLE]\n | 1. Minimum Investment Amount: INR 500 and multiples of INR 1 thereafter. Minimum number of instalments would be 12. 2. SIP Top up facility would not be available under this facility 3. Investors enrolling for Daily SIP should select “As & when presented” as payment frequency in the OTM. Terms & conditions for Monthly, Quarterly, Semi-Annual & Annual Systematic Investment Plan are as follows: Monthly – Minimum Rs. 1000 & in multiples of Re. 1 thereafter for minimum 6 months or Minimum Rs. 500 & in multiples of Re. 1 thereafter for minimum 12 months Quarterly - Minimum Rs. 1500 & in multiples of Re. 1 thereafter for minimum 1 year Semi-annual and Annual Systematic Investment Plan - Minimum amount of investment will be Rs. 3,000 and in multiples of Re.1 thereafter for Semi-Annual SIP & Rs. 5,000 and in multiples of Re.1 thereafter in case of Annual SIP. Minimum number of installments will be 4. c)Weekly Systematic Investment Plan The terms & conditions for the weekly SIP are as follows: 1) Minimum amount for weekly SIP : - Rs. 1000 and in multiples of Re.1 thereafter with minimum number of 6 installments. - Rs. 500 and in multiples of Re.1 thereafter with minimum number of 12 installments 2) Date based feature - Weekly SIP will be done on 1st, 8th, 15th & 22nd of the month 3) In case the date of SIP falls on a Non-Business Day, then the immediate following Business Day will be considered for the purpose of transfer. 4) In Day based feature, investors may select any Day of the Week viz. Monday/ Tuesday/ Wednesday/ Thursday/ Friday on which Weekly SIP/STP/SWP instalment shall be processed and in case any of these days is a non-business day then the immediate next NonBusiness day will be considered for processing. 5) In case investor selects Weekly frequency and also selects both Day based and Date -based Weekly SIP, default will be considered as ‘Day based Weekly SIP. 6) In case investor selects Weekly frequency and does not select Day based or Date -based Weekly SIP, default will be considered as ‘Day based Weekly SIP. 7) If investor selects Day based Weekly SIP but does not mention ‘Day’ on which the Weekly SIP instalment to be processed, then ‘Wednesday’ will be considered as the default Day."
+        },
+        {
+          "chunk_id": "sid:sid---sbi-small-cap-fund:0109",
+          "score": 0.7814955115318298,
+          "source_document": "sid---sbi-small-cap-fund.pdf",
+          "document_type": "sid",
+          "page_number": "45",
+          "section_heading": "e. Transfer of investments from one scheme to another scheme, including this scheme, under the Mutual Fund",
+          "text": "[TABLE]\n | All on-going existing SIPs, STP-in registered before February 04, 2021 will continue to be processed in the Scheme. The AMC reserves the right to reject the application and refund the amount without any notice to the investor, if the application made under the Scheme is not in line with the applicable provisions of the Scheme related Document or on reaching the net inflows limit as specified above. Further, the Trustees of SBI Mutual Fund may at their sole and absolute discretion decide to close the investment under the Scheme at any time. i) Systematic Investment Plan For investors, the fund offers a Systematic Investment Plan (SIP) at all our Official point of acceptance of SBI MF’s locations. Under this Facility, an investor can invest a fixed amount per frequency. This facility will help the investor to average out their cost of investment over a period of six months or one year and thus overcome the short-term fluctuations in the market. The Scheme offers Daily, weekly, Monthly, Quarterly, Systematic Investment Plan. Terms and conditions for Daily SIP are as follows: 1. Minimum Investment Amount: INR 500 and multiples of INR 1 thereafter. Minimum number of instalments would be 12. 2. SIP Top up facility would not be available under this facility 3. Investors enrolling for Daily SIP should select “As & when presented” as payment frequency in the OTM. a) Terms & conditions for Monthly, Quarterly, Systematic investment plan are as follows: Monthly – Minimum Rs. 1000 & in multiples of Re. 1 thereafter for minimum 6 months or Minimum Rs. 500 & in multiples of Re. 1 thereafter for minimum 12 months Quarterly - Minimum Rs. 1500 & in multiples of Re. 1 thereafter for minimum 1 year b) Weekly Systematic Investment Plan The terms & conditions for the weekly SIP are as follows: 1) Minimum amount for weekly SIP – Rs. 1000 and in multiples of Re.1 thereafter. 2) Minimum number of installments will be 6. 3) Date based feature - Weekly SIP will be done on 1st, 8th, 15th & Fund of the month 4) In case the date of SIP falls on a Non-Business Day, then the immediate following Business Day will be considered for the purpose of transfer. 5) In Day based feature, investors may select any Day of the Week viz. Monday/ Tuesday/ Wednesday/ Thursday/ Friday on which Weekly SIP/STP/SWP instalment shall be processed and in case any of these days is a non-"
+        },
+        {
+          "chunk_id": "sid:sid---sbi-small-cap-fund:0008",
+          "score": 0.7530765533447266,
+          "source_document": "sid---sbi-small-cap-fund.pdf",
+          "document_type": "sid",
+          "page_number": "6",
+          "section_heading": "SECTION I",
+          "text": "[TABLE]\n | | minimum amount of withdrawals applicable under SWP would be applicable to STP also. Similarly the minimum investments applicable for each scheme under SIP would be applicable to STP. For further details of above special products / facilities, kindly refer Section II and SAI.\nXXV. | Weblink | Please refer to our website for the following: TER for last 6 months/ Daily TER: Please refer https://www.sbimf.com/total-expense-ratio-of-mutual- fund-schemes Scheme factsheet: Please refer https://www.sbimf.com/factsheets"
+        },
+        {
+          "chunk_id": "sid:sid---sbi-focused-fund:0110",
+          "score": 0.752323567867279,
+          "source_document": "sid---sbi-focused-fund.pdf",
+          "document_type": "sid",
+          "page_number": "49",
+          "section_heading": "G. Other Scheme Specific Disclosures",
+          "text": "[TABLE]\n | investor can define the maximum SIP Top-up Cap, beyond which the SIP instalment will not increase in future. The investor shall have the flexibility to choose either Top-Up SIP Cap amount or Top-Up SIP Cap Month-Year. In case of multiple selection, Top-Up SIP Cap amount will be considered as default selection. Terms and conditions of Top-up SIP Cap facility are as follows: 1. Top-up SIP Cap Amount: Investor has an option to fix the Top-up SIP amount i.e. maximum SIP instalment including Top-Up amount. The pre-defined amount should be equal to or lesser than the maximum amount mentioned by the investor in One Time Mandate Form (OTM). The instalment amount after Top-up shall not exceed the amount mentioned in OTM at any given time. 2. In case of difference between the Top-Up SIP Cap Amount & OTM Debit Mandate, then amount which is lower of the two shall be considered as the Top-up SIP Cap amount. 3. If SIP amount (including SIP Top-up amount) reaches the Top-up Cap before the end of SIP tenure, the SIP Top up will cease and SIP instalment amount will remain constant for remaining SIP Tenure. 4. Top-up SIP Cap Month-Year: It is the month from which SIP Top-up amount will cease and last SIP instalment including Top-Up amount will remain constant till the end of SIP tenure. 5. If none of the above options is selected by the investor, the SIP Top-up will continue as per the SIP end Mandate subject to the maximum amount mentioned in OTM Form. 6. The AMC/Trustee reserves the right to terminate or modify the conditions of the Facility at its discretion. (ii) Systematic Withdrawal Plan Under SWP, a minimum amount of Rs. 500/- can be withdrawn every month or quarter or weekly or half yearly or on an annual basis by indicating in the application form or by issuing advance instructions to the Registrar at any time. Investors may indicate the month and year from which SWP should commence along with the frequency. SWP can be processed on any day of the month in case of all the other frequencies other than weekly SWP and 1st / 8th / 15th / 22nd of every month in case of Weekly SWP (Date based feature) and payment would be credited to the registered bank mandate account of the investor through Direct Credit or cheques would be issued. In case any of these days is a non-business day then the immediately next business day will be considered. If no Mandate is mentioned, 10th will be considered as the default Mandate. In Day based feature, investors may select any Day of the Week viz. Monday/ Tuesday/ Wednesday/ Thursday/ Friday on which"
+        }
+      ],
+      "error": null,
+      "faithfulness": 1.0,
+      "context_precision": 0.0,
+      "context_recall": null,
+      "answer_relevancy": 0.9100967935662835
+    },
+    {
+      "id": "fact_05",
+      "category": "factual_lookup",
+      "question": "What is Fund D's benchmark index?",
+      "expected_answer": "[FILL IN FROM SID/factsheet]",
+      "no_ground_truth_answer_yet": true,
+      "answer": "I do not have information on a fund named \"Fund D\" in the provided documents.",
+      "citations": [],
+      "retrieved": [
+        {
+          "chunk_id": "sid:sid---sbi-focused-fund:0022",
+          "score": 0.721036434173584,
+          "source_document": "sid---sbi-focused-fund.pdf",
+          "document_type": "sid",
+          "page_number": "9-11",
+          "section_heading": "A. HOW WILL THE SCHEME ALLOCATE ITS ASSETS?",
+          "text": "id benchmark is such that it is most suited for comparing\nperformance of the scheme. The Trustee reserve the right to change the benchmark if due to a\nchange in market conditions, a different index /indices appears to provide a more appropriate\nbasis for comparison of fund performance."
+        },
+        {
+          "chunk_id": "sid:SID - HDFC Flexi Cap Fund dated November 21, 2025_0:0038",
+          "score": 0.715620219707489,
+          "source_document": "SID - HDFC Flexi Cap Fund dated November 21, 2025_0.pdf",
+          "document_type": "sid",
+          "page_number": "17-18",
+          "section_heading": "G. HOW HAS THE SCHEME PERFORMED?",
+          "text": "Performance of the Scheme (as at September 30, 2025)\n17\nHDFC Flexi Cap Fund-SID\nThe performance of the Scheme shall be benchmarked against NIFTY 500 Index (TRI)\n(Benchmarked to the Total Returns Index (TRI) Variant of the Index)"
+        },
+        {
+          "chunk_id": "sid:sid---sbi-focused-fund:0028",
+          "score": 0.7114808559417725,
+          "source_document": "sid---sbi-focused-fund.pdf",
+          "document_type": "sid",
+          "page_number": "13-14",
+          "section_heading": "G. HOW HAS THE SCHEME PERFORMED (if applicable)",
+          "text": "As scheme First Tier benchmark TRI data is not available since inception of the scheme, First Tier\nbenchmark performance is calculated using composite CAGR of BSE 500 PRI values from 17-Sep-04 to\n31-Jul-06 and TRI values since 01-Aug-06. Direct Plan was introduced on January 01, 2013\nDate of inception: 17/09/2004\nFinancial Year Wise Performance:\nAbsolute Returns for each financial year for the last 5 years\ni.\nScheme’s portfolio holdings (top 10 holdings by issuer and fund allocation towards various\nsectors) Please refer to our website - https://www.sbimf.com/sbimf-top-holdings/081\nii.\nDisclosure of name and exposure to Top 7 issuers, stocks, groups and sectors as a\npercentage of NAV of the scheme in case of debt and equity ETFs/index funds: NA\niii.\nPortfolio Disclosure - Fortnightly / Monthly/ Half Yearly - Please refer to our website -\nhttps://www.sbimf.com/portfolios\niv.\nPortfolio Turnover Rate. as on September 30, 2025 – 0.3479\nv.\nAggregate investment in the Scheme by:"
+        },
+        {
+          "chunk_id": "sid:sid---sbi-midcap-fund:0031",
+          "score": 0.707785964012146,
+          "source_document": "sid---sbi-midcap-fund.pdf",
+          "document_type": "sid",
+          "page_number": "13-14",
+          "section_heading": "G. HOW HAS THE SCHEME PERFORMED",
+          "text": "Returns since inception\n16.38\nN.A.\n18.87\n18.63\nAs the scheme was launched before the launch of the above benchmark index, benchmark index figures since\ninception or the required period are not available. Direct Plan was introduced on January 01, 2013\nDate of inception: 29 March, 2005\nFinancial Year Wise Performance:\nAbsolute Returns for each financial year for the last 5 years\ni.\nScheme’s portfolio holdings as on September 30, 2025 (top 10 holdings by issuer and\nfund allocation towards various sectors) Please refer to our website -\nhttps://www.sbimf.com/sbimf-top-holdings/091\nii.\nDisclosure of name and exposure to Top 7 issuers, stocks, groups and sectors as a\npercentage of NAV of the scheme in case of debt and equity ETFs/index funds - Not\napplicable.\niii.\nPortfolio Disclosure - Fortnightly / Monthly/ Half Yearly: Please refer to our website -\nhttps://www.sbimf.com/portfolios\niv.\nPortfolio Turnover Rate as on September 30, 2025– 0.63\nv.\nAggregate investment in the Scheme by:"
+        },
+        {
+          "chunk_id": "sid:SID - HDFC Mid Cap Fund dated November 21, 2025_1:0038",
+          "score": 0.7019484043121338,
+          "source_document": "SID - HDFC Mid Cap Fund dated November 21, 2025_1.pdf",
+          "document_type": "sid",
+          "page_number": "17",
+          "section_heading": "G. HOW HAS THE SCHEME PERFORMED?",
+          "text": "Performance of the Scheme (as at September 30, 2025)\nThe performance of the Scheme shall be benchmarked against NIFTY MIDCAP 150 (TRI)\n(Benchmarked to the Total Returns Index (TRI) Variant of the Index)\n17\nHDFC Mid Cap Fund-SID"
+        }
+      ],
+      "error": null,
+      "faithfulness": 1.0,
+      "context_precision": 0.0,
+      "context_recall": null,
+      "answer_relevancy": 0.6999675226993313
+    },
+    {
+      "id": "fact_06",
+      "category": "factual_lookup",
+      "question": "What was the total issue size of [IPO Company]'s recent IPO as stated in the prospectus?",
+      "expected_answer": "[FILL IN FROM DRHP — Issue Structure section]",
+      "no_ground_truth_answer_yet": true,
+      "answer": "The prospectus states that the issue involves a fresh issuance of equity shares aggregating up to ₹2,000 million.",
+      "citations": [
+        {
+          "source_document": "DRHP Arjun Jewellers.pdf",
+          "document_type": "drhp",
+          "page_number": "121-123"
+        }
+      ],
+      "retrieved": [
+        {
+          "chunk_id": "drhp:DRHP Arjun Jewellers:1415",
+          "score": 0.6967020630836487,
+          "source_document": "DRHP Arjun Jewellers.pdf",
+          "document_type": "drhp",
+          "page_number": "382-387",
+          "section_heading": "OTHER REGULATORY AND STATUTORY DISCLOSURES",
+          "text": "ndertaken any public, including any rights issues to the public in the five years immediately\npreceding the date of this Draft Red Herring Prospectus.\nPerformance vis- à-vis objects - Public/ rights issue of the listed Subsidiaries and listed Promoter\nAs of the date of this Draft Red Herring Prospectus, our Company does not have any subsidiary company or any\nlisted corporate promoter.\nStock market data of the Equity Shares\nAs the Issue is the initial public offering of the Equity Shares, the Equity Shares are not listed on any stock\nexchange as on the date of this Draft Red Herring Prospectus, and accordingly, no stock market data is available\nfor the Equity Shares.\nPrice information of past issues handled by Saffron Capital Advisors Private Limited (during the current\nFiscal and two Fiscals preceding the current financial year):"
+        },
+        {
+          "chunk_id": "drhp:DRHP Arjun Jewellers:0391",
+          "score": 0.6911664009094238,
+          "source_document": "DRHP Arjun Jewellers.pdf",
+          "document_type": "drhp",
+          "page_number": "119-120",
+          "section_heading": "CAPITAL STRUCTURE",
+          "text": "subscription and the Issue Price and updated in the Prospectus, subject to finalization of the Basis of Allotment.\n19. Except for the allotment of Equity Shares pursuant to the Issue, there will be no further issue of Equity Shares\nwhether by way of issue of bonus shares, rights issue, preferential issue or any other manner during the period\ncommencing from the date of filing of this Red Herring Prospectus until the listing of the Equity Shares on the\nStock Exchanges pursuant to the Issue or all application moneys have been refunded to the Anchor Investors, or\nthe application moneys are unblocked in the ASBA Accounts on account of non-listing, under-subscription etc.,\nas the case may be in the event there is a failure of the Issue.\n20. Average cost of acquisition of Equity Shares of our Promoters\nThe average cost of acquisition of Equity Shares held by our Promoters as on the date of this Draft Red Herring\nProspectus is set forth in the table below:\nAverage cost of Acquisition per\nEquity Share (in ₹)*\nPromoters\nManishbhai Nathubhai Ghadiya\n15,000,000\n2.00\nGhadiya Raswanti Manish\n8,000,000\n2.00"
+        },
+        {
+          "chunk_id": "drhp:DRHP Arjun Jewellers:0406",
+          "score": 0.6905683279037476,
+          "source_document": "DRHP Arjun Jewellers.pdf",
+          "document_type": "drhp",
+          "page_number": "121-123",
+          "section_heading": "CAPITAL STRUCTURE",
+          "text": "in cash or kind or services or otherwise to any Bidder for\nmaking a Bid, except for fees or commission for services rendered in relation to the Issue.\n39. None of the Equity Shares held by our Shareholders are pledged or otherwise encumbered as on the date of\nthis Draft Red Herring Prospectus.\nThe Issue is by way of fresh issuance of [●] Equity Shares of face value ₹ 10/- each, aggregating up to ₹ 2,000\nmillion by our Company. The Gross Proceeds of the Issue, less the Issue-related expenses to be borne by our\nCompany (“Net Proceeds”), will be utilised for the Objects (as defined below) set forth below. For details, see,\n“The Issue” beginning on page 68\nObject of the Issue\nThe net proceeds of the Issue, i.e., gross proceeds of the Issue less the Issue related expenses (“Net Proceeds”)\nare proposed to be utilised in the following manner:\n1. Funding of incremental working capital requirements, primarily towards procurement of inventory for our\nexisting retail showrooms and proposed new retail showrooms in Saurashtra, Gujarat (\"New Stores\").\n2. General Corporate Purposes.\n(collectively, the “Objects”)"
+        },
+        {
+          "chunk_id": "drhp:DRHP Arjun Jewellers:1414",
+          "score": 0.6890099048614502,
+          "source_document": "DRHP Arjun Jewellers.pdf",
+          "document_type": "drhp",
+          "page_number": "382-387",
+          "section_heading": "OTHER REGULATORY AND STATUTORY DISCLOSURES",
+          "text": "e any listed group\ncompanies, subsidiaries or associates.\nCommission and brokerage paid on previous issues of the Equity Shares in the last five years\nSince this is the initial public offering of the Equity Shares, no sum has been paid or has been payable as\ncommission or brokerage for subscribing to or procuring or agreeing to procure public subscription for any of our\nEquity Shares in the five years preceding the date of this Draft Red Herring Prospectus.\nCapital Issues in the Preceding Three Years by our Company, our listed Group Companies, Subsidiary\nand associates\nExcept as disclosed in “Capital Structure” beginning on page 88, our Company has not made any capital issuances\nduring the three years preceding the date of this Draft Red Herring Prospectus. Further, our Company does not\nhave any listed subsidiary, group company or associate as on the date of this Draft Red Herring Prospectus\nPerformance vis-à-vis objects - Public/ rights issue of our Company\nOur Company has not undertaken any public, including any rights issues to the public in the five years immediately\npreceding the date of this Draft Red Herring Prospectus."
+        },
+        {
+          "chunk_id": "drhp:DRHP Arjun Jewellers:0334",
+          "score": 0.688647985458374,
+          "source_document": "DRHP Arjun Jewellers.pdf",
+          "document_type": "drhp",
+          "page_number": "91",
+          "section_heading": "GENERAL INFORMATION",
+          "text": "“Terms of the Issue”, “Issue Structure” and\n“Issue Procedure” beginning on page 387, on page 395 and on page 401, respectively.\nUnderwriting Agreement\nAfter the determination of the Issue Price and allocation of Equity Shares, but prior to the filing of the Prospectus\nwith the RoC, our Company shall enter into an Underwriting Agreement with the Underwriters for the Equity\nShares proposed to be offered in the Issue. The extent of underwriting obligations and the Bids to be underwritten\nin the Issue shall be as per the Underwriting Agreement. The Underwriting Agreement will be dated [●]. Pursuant\nto the terms of the Underwriting Agreement, the obligations of each of the Underwriters will be several and will\nbe subject to certain conditions specified therein. The Underwriters have indicated their intention to underwrite\nthe following number of Equity Shares:\nAmount\nUnderwritten(₹\nin million)\n[●]\n[●]\n[●]\n(The Underwriting Agreement has not been executed as on the date of this Draft Red Herring Prospectus. This portion has\nbeen intentionally left blank and will be filled in upon the execution of the Underwriting Agreement at the time of filing of the\nProspectus with the RoC.)"
+        }
+      ],
+      "error": null,
+      "faithfulness": 1.0,
+      "context_precision": 0.3333333333333333,
+      "context_recall": null,
+      "answer_relevancy": 0.7495213819484369
+    },
+    {
+      "id": "fact_07",
+      "category": "factual_lookup",
+      "question": "What did [IPO Company]'s prospectus list as its top risk factor?",
+      "expected_answer": "[FILL IN FROM DRHP — Risk Factors section, cite the exact first-listed risk]",
+      "no_ground_truth_answer_yet": true,
+      "answer": "The retrieved excerpts do not contain the specific top risk factor listed in the prospectus.",
+      "citations": [],
+      "retrieved": [
+        {
+          "chunk_id": "drhp:DRHP Arjun Jewellers:0762",
+          "score": 0.67359459400177,
+          "source_document": "DRHP Arjun Jewellers.pdf",
+          "document_type": "drhp",
+          "page_number": "208-218",
+          "section_heading": "INDUSTRY OVERVIEW",
+          "text": "ies related to those statements and\n“Risk Factors” on page 23 for a discussion of certain factors that may affect our business, financial condition or\nresults of operations. Our actual results may differ materially from those expressed in or implied by these forward-\nlooking statements. To obtain a complete understanding of our Company and business, prospective investors\nshould read “Risk Factors”, “Industry Overview”, “Other Financial Information” and “Management’s\nDiscussion and Analysis of Financial Condition and Results of Operations” on pages 23, 147, 324 and 331,\nrespectively, as well as financial and other information contained in this Draft Red Herring Prospectus as a\nwhole. Additionally, please refer to “Definitions and Abbreviations” on page 1 for definitions of certain terms\nused in this section.\nThe industry information contained in this section is derived from the industry report titled “Gems and Jewellery\nSector in India” dated July 2026, which is exclusively prepared for the purposes of the Issue and issued by Dun\n& Bradstreet and is commissioned and paid for by our Company (“D&B Report”). Dun & Bradstreet was"
+        },
+        {
+          "chunk_id": "drhp:DRHP Arjun Jewellers:0382",
+          "score": 0.6688947081565857,
+          "source_document": "DRHP Arjun Jewellers.pdf",
+          "document_type": "drhp",
+          "page_number": "117",
+          "section_heading": "CAPITAL STRUCTURE",
+          "text": "(b) Set forth below is a list of Shareholders, holding 1% or more of the paid-up Equity Share capital of our Company\nas of ten days prior to filing this Draft Red Herring Prospectus:"
+        },
+        {
+          "chunk_id": "drhp:DRHP Arjun Jewellers:0510",
+          "score": 0.6647099256515503,
+          "source_document": "DRHP Arjun Jewellers.pdf",
+          "document_type": "drhp",
+          "page_number": "143-144",
+          "section_heading": "Financial Information” on page 271",
+          "text": "of the above qualitative and quantitative parameters.\nInvestors should read the aforementioned information along with “Risk Factors”, “Our Business”,\n“Management’s Discussion and Analysis of Financial Position and Results of Operations” and “Restated\nFinancial Information” on pages 23, 205, 331 and 271, respectively, to have a more informed view. The trading\nprice of the Equity Shares could decline due to the factors mentioned in the “Risk Factors” and you may lose all\nor part of your investments.\nTo,\nThe Board of Directors,\nArjun Jewellers Limited,\nOffice No. 401, 4th Floor,\nPride Capital, Jalaram 1,\nStreet No. 2, University Road,\nRajkot Sau Uni Area,\nRajkot-360005, Gujarat, India.\nSub: Proposed initial public offering of equity shares of face value of ₹10 each (Equity Shares and such\nInitial Public Offer, an “IPO” or “Issue”) of Arjun Jewellers Limited (“Company”).\nDear Sir/ Madam,\nWe, Vaghasia & Lakhani LLP, Chartered Accountants , the statutory auditors of the Company, hereby confirm\nthat the enclosed statement in the Annexure prepared by the Company and initialled by us and the Company for"
+        },
+        {
+          "chunk_id": "drhp:DRHP Arjun Jewellers:1415",
+          "score": 0.6625684499740601,
+          "source_document": "DRHP Arjun Jewellers.pdf",
+          "document_type": "drhp",
+          "page_number": "382-387",
+          "section_heading": "OTHER REGULATORY AND STATUTORY DISCLOSURES",
+          "text": "ndertaken any public, including any rights issues to the public in the five years immediately\npreceding the date of this Draft Red Herring Prospectus.\nPerformance vis- à-vis objects - Public/ rights issue of the listed Subsidiaries and listed Promoter\nAs of the date of this Draft Red Herring Prospectus, our Company does not have any subsidiary company or any\nlisted corporate promoter.\nStock market data of the Equity Shares\nAs the Issue is the initial public offering of the Equity Shares, the Equity Shares are not listed on any stock\nexchange as on the date of this Draft Red Herring Prospectus, and accordingly, no stock market data is available\nfor the Equity Shares.\nPrice information of past issues handled by Saffron Capital Advisors Private Limited (during the current\nFiscal and two Fiscals preceding the current financial year):"
+        },
+        {
+          "chunk_id": "drhp:DRHP Arjun Jewellers:0064",
+          "score": 0.6619119048118591,
+          "source_document": "DRHP Arjun Jewellers.pdf",
+          "document_type": "drhp",
+          "page_number": "23-29",
+          "section_heading": "CURRENCY OF PRESENTATION",
+          "text": "ing assumptions do not come to fruition. In\naccordance with the SEBI ICDR Regulations, our Company will ensure that investors in India are informed of\nmaterial developments pertaining to our Company from the date of this Draft Red Herring Prospectus until the\ntime of the grant of listing and trading permissions by the Stock Exchanges.\nAn investment in Equity Shares involves a high degree of risk. You should carefully consider the information in\nthis Draft Red Herring Prospectus, including the risks, uncertainties and challenges described below, before\nmaking an investment in Equity Shares. You should read this section in conjunction with “Our Business”,\n“Industry Overview” and “Management’s Discussion and Analysis of Financial Condition and Results of\nOperations” on pages 205, 147 and 331, respectively, as well as our Restated Financial Information and the other\nfinancial and statistical information contained elsewhere in this Draft Red Herring Prospectus. In addition, the\nrisks set out in this section may not be exhaustive and additional risks and uncertainties not presently known to"
+        }
+      ],
+      "error": null,
+      "faithfulness": 1.0,
+      "context_precision": 0.0,
+      "context_recall": null,
+      "answer_relevancy": 0.739307541876178
+    },
+    {
+      "id": "fact_08",
+      "category": "factual_lookup",
+      "question": "What is Fund E's asset allocation pattern across equity, debt, and cash as per its SID?",
+      "expected_answer": "[FILL IN FROM SID — Asset Allocation Pattern table]",
+      "no_ground_truth_answer_yet": true,
+      "answer": "I do not have the SID document for Fund E in the provided corpus, so I cannot provide its asset allocation pattern across equity, debt, and cash.",
+      "citations": [],
+      "retrieved": [
+        {
+          "chunk_id": "sid:SID - HDFC Mid Cap Fund dated November 21, 2025_1:0100",
+          "score": 0.7322849035263062,
+          "source_document": "SID - HDFC Mid Cap Fund dated November 21, 2025_1.pdf",
+          "document_type": "sid",
+          "page_number": "24-42",
+          "section_heading": "C. LOAD STRUCTURE",
+          "text": "securities normally are more liquid\ncompared to lower rated securities. As a result, different portfolios will face different levels of liquidity risk\nbased on the underlying portfolio composition. Some of the strategies to reduce liquidity risk are creating\n35\nHDFC Mid Cap Fund-SID\nportfolios that are diversified across maturities, ratings, types of securities, etc. in line with the fund\nobjectives, regulations and investment strategy.\n Credit Risk: Lower rated securities have a higher credit risk compared to higher rated securities. Hence,\ncredit risk faced by different schemes will be different based on the underlying portfolio / investment\nstrategy. To reduce the credit risk, a comprehensive and in-depth credit evaluation of each issuer will be\nundertaken, using both quantitative (leverage, profitability, solvency ratios etc.) and qualitative factors\n(parentage, track record etc.). Each of the scheme/portfolio will endeavour to maintain adequate\ndiversification across issuers / sectors in line with scheme objectives, regulations and investment\nstrategy. Unrated investments, if any, would require specific approval from a committee constituted for\nthe purpose."
+        },
+        {
+          "chunk_id": "sid:sid---sbi-midcap-fund:0090",
+          "score": 0.723415732383728,
+          "source_document": "sid---sbi-midcap-fund.pdf",
+          "document_type": "sid",
+          "page_number": "28-35",
+          "section_heading": "VIII. Real Estate Investment Trust (REITs) & Infrastructure Investment Trust (InvIT)",
+          "text": "itted by SEBI Regulations from time to time. The\nFund may use any hedging techniques that are permissible now or in future, under SEBI regulations, in\nconsonance with the scheme's investment objective, including investment in derivatives such as interest rate\nswaps. The Fund shall fully cover its position in the derivatives market by holding underlying securities / cash or\ncash equivalents / option and / or obligation for acquiring underlying assets to honour the obligations contracted\nin the derivatives market. The Fund shall maintain separate records for holding the cash and cash equivalents /\nsecurities for this purpose. The securities held shall be marked to market by the AMC to ensure full coverage of\ninvestments made in derivative products at all times.\nSEBI in terms of paragraph 7.5 of the SEBI Master Circular for Mutual Funds dated June 27, 2024 permitted\nMutual Funds to participate in the derivatives market at par with Foreign Portfolio Investors (FPI). Accordingly,\nMutual Funds shall be treated at par with a registered FII in respect of position limits in index futures, index\noptions, stock options and stock futures contracts."
+        },
+        {
+          "chunk_id": "sid:SID - HDFC Mid Cap Fund dated November 21, 2025_1:0162",
+          "score": 0.721798300743103,
+          "source_document": "SID - HDFC Mid Cap Fund dated November 21, 2025_1.pdf",
+          "document_type": "sid",
+          "page_number": "50-55",
+          "section_heading": "ii. The correlation for past 90 days between the part of the portfolio (excluding the hedged",
+          "text": "e Scheme\n● Investment pattern - Please refer to section ‘How will the Scheme Allocate its Assets?’ under\n(iii)\nTerms of Issue\n54\nHDFC Mid Cap Fund-SID\n(a) Liquidity provisions such as listing, repurchase, redemption. For further details, please refer to\nsection “Other Scheme Specific Disclosures” under Section II, Part II, Clause D\nb) Aggregate Fees and expenses charged to the Scheme. For further details, please refer to section\n“Annual Scheme Recurring Expenses” under Section I, Part III, Clause B\nc) Any safety net or guarantee provided. This Scheme does not provide any guaranteed or assured\nChanges in Fundamental Attributes:\nIn accordance with Regulation 18 (15A) and Regulation 25(26) of the SEBI (MF) Regulations, read with\nclause 1.14.1.4 and 17.10 of Master Circular, the Trustee and AMC shall ensure that no change in the\nfundamental attributes of the Scheme and the Plan(s)/Option(s) thereunder or the trust or fee and expenses\npayable or any other change which would modify the Scheme and the Plan(s)/ Option(s) thereunder affect\nthe interest of Unit holders is carried out by the AMC unless:\n● SEBI has reviewed and provided its comments on the proposal"
+        },
+        {
+          "chunk_id": "sid:SID - HDFC Flexi Cap Fund dated November 21, 2025_0:0099",
+          "score": 0.7200787663459778,
+          "source_document": "SID - HDFC Flexi Cap Fund dated November 21, 2025_0.pdf",
+          "document_type": "sid",
+          "page_number": "24-42",
+          "section_heading": "C. LOAD STRUCTURE",
+          "text": "securities normally are more liquid\ncompared to lower rated securities. As a result, different portfolios will face different levels of liquidity risk\nbased on the underlying portfolio composition. Some of the strategies to reduce liquidity risk are creating\n35\nHDFC Flexi Cap Fund-SID\nportfolios that are diversified across maturities, ratings, types of securities, etc. in line with the fund\nobjectives, regulations and investment strategy.\n Credit Risk: Lower rated securities have a higher credit risk compared to higher rated securities. Hence,\ncredit risk faced by different schemes will be different based on the underlying portfolio / investment\nstrategy. To reduce the credit risk, a comprehensive and in-depth credit evaluation of each issuer will be\nundertaken, using both quantitative (leverage, profitability, solvency ratios etc.) and qualitative factors\n(parentage, track record etc.). Each of the scheme/portfolio will endeavour to maintain adequate\ndiversification across issuers / sectors in line with scheme objectives, regulations and investment\nstrategy. Unrated investments, if any, would require specific approval from a committee constituted for\nthe purpose."
+        },
+        {
+          "chunk_id": "sid:SID - HDFC Flexi Cap Fund dated November 21, 2025_0:0026",
+          "score": 0.7196322083473206,
+          "source_document": "SID - HDFC Flexi Cap Fund dated November 21, 2025_0.pdf",
+          "document_type": "sid",
+          "page_number": "12-15",
+          "section_heading": "A. HOW WILL THE SCHEME ALLOCATE ITS ASSETS?",
+          "text": "r detailed disclosures, kindly refer Section II.\nThe investment objective of the Scheme is to generate capital appreciation / income from a portfolio,\npredominantly of equity & equity related instruments.\nThe Scheme would predominantly invest in companies spanning entire market capitalization that:\na) are likely to achieve above average growth\nb) enjoy distinct competitive advantages, and\nc) have superior financial strength.\n13\nHDFC Flexi Cap Fund-SID\nThe aim of the equity strategy will be to build a portfolio, representing a cross section of companies diversified\nacross major industries, economic sectors and market capitalization that offer an acceptable risk reward\nbalance.\nA part of the funds may be invested in debt and money market instruments. Investment in Debt securities\n(including securitised debt) and Money Market Instruments will be as per the limits in the asset allocation\ntable of the Scheme, subject to permissible limits laid under SEBI (MF) Regulations. Investment in debt\nsecurities will be guided by credit quality, liquidity, interest rates and their outlook.\nThe Scheme may also invest in the hybrid securities viz. units of REITs and InvITs for diversification and"
+        }
+      ],
+      "error": null,
+      "faithfulness": 1.0,
+      "context_precision": 0.0,
+      "context_recall": null,
+      "answer_relevancy": 0.8513715013852791
+    },
+    {
+      "id": "fact_09",
+      "category": "factual_lookup",
+      "question": "As per SEBI's investor guidelines, what is the cut-off time for same-day NAV applicability on mutual fund purchases?",
+      "expected_answer": "[FILL IN FROM SEBI circular — cite the specific circular and cut-off time it states]",
+      "no_ground_truth_answer_yet": true,
+      "answer": "According to SEBI’s investor guidelines, the cut‑off time for same‑day NAV applicability on mutual fund purchases is 3:00 p.m. on a business day. Applications received up to 3:00 p.m. (with funds available before the cut‑off) are processed at the closing NAV of that day.",
+      "citations": [
+        {
+          "source_document": "SID - HDFC Mid Cap Fund dated November 21, 2025_1.pdf",
+          "document_type": "sid",
+          "page_number": "62"
+        }
+      ],
+      "retrieved": [
+        {
+          "chunk_id": "sid:SID - HDFC Mid Cap Fund dated November 21, 2025_1:0171",
+          "score": 0.8185981512069702,
+          "source_document": "SID - HDFC Mid Cap Fund dated November 21, 2025_1.pdf",
+          "document_type": "sid",
+          "page_number": "62",
+          "section_heading": "D. OTHER SCHEME SPECIFIC DISCLOSURES",
+          "text": "[TABLE]\n | It is clarified that since the occurrence of the abovementioned eventualities have the ability to impact the overall market and liquidity situation, the same may result in exceptionally large number of Redemption requests being made and in such a situation the indicative timelines, if any mentioned by the Fund in the scheme offering documents, for processing of requests for Redemption may not be applicable. Any restriction on Redemption or suspension of Redemption of the Units in the Scheme(s) of the Mutual Fund shall be made applicable only after specific approval of the Board of Directors of the AMC and Trustee Company and thereafter, immediately informing the same to SEBI. The AMC / Trustee reserves the right to change / modify the provisions of right to restrict Redemption and / or suspend Redemption of the Units in the Scheme of the Fund.\nCut off timing for subscriptions/ redemptions/ switches This is the time before which your application (complete in all respects) should reach the official points of acceptance. | The below cut-off timings and applicability of NAV shall be applicable in respect of valid applications received at the Official Point(s) of Acceptance on a Business Day: A] For Purchase (including switch-in) of any amount: In respect of valid applications received upto 3.00 p.m. and where the funds for the entire amount are available for utilization before the cut- off time i.e. credited to the bank account of the Scheme before the cut- off time - the closing NAV of the day shall be applicable. In respect of valid applications received after 3.00 p.m. and where the funds for the entire amount are credited to the bank account of the Scheme either at any time on the same day or before the cut-off time of the next Business Day i.e. available for utilization before the cut-off time of the next Business Day - the closing NAV of the next Business Day shall be applicable. Irrespective of the time of receipt of application, where the funds for the entire amount are credited to the bank account of the Scheme before the cut-off time on any subsequent Business Day i.e. available for utilization before the cut-off time on any subsequent Business Day - the closing NAV of such subsequent Business Day shall be applicable. B] For Switch-ins of any amount: For determining the applicable NAV, the following shall be ensured: Application for switch-in is received before the applicable cut-off time. Funds for the entire amount of subscription/purchase as per the switch-in request are credited to the bank account of the Scheme before the cut-off time. The funds are available for utilization before the cut-off time. In case of ‘switch’ transactions from one scheme to another, the allocation shall be in line with redemption payouts. In case of switches, the request should be received on a day which is a Business Day for the Switch-out scheme. Redemption for switch-out shall be processed at the applicable NAV as per cut-off timing. Switch- in will be processed at the Applicable NAV (on a Business Day) based"
+        },
+        {
+          "chunk_id": "sid:SID - HDFC Small Cap Fund dated November 21, 2025_0:0171",
+          "score": 0.8185981512069702,
+          "source_document": "SID - HDFC Small Cap Fund dated November 21, 2025_0.pdf",
+          "document_type": "sid",
+          "page_number": "61",
+          "section_heading": "D. OTHER SCHEME SPECIFIC DISCLOSURES",
+          "text": "[TABLE]\n | It is clarified that since the occurrence of the abovementioned eventualities have the ability to impact the overall market and liquidity situation, the same may result in exceptionally large number of Redemption requests being made and in such a situation the indicative timelines, if any mentioned by the Fund in the scheme offering documents, for processing of requests for Redemption may not be applicable. Any restriction on Redemption or suspension of Redemption of the Units in the Scheme(s) of the Mutual Fund shall be made applicable only after specific approval of the Board of Directors of the AMC and Trustee Company and thereafter, immediately informing the same to SEBI. The AMC / Trustee reserves the right to change / modify the provisions of right to restrict Redemption and / or suspend Redemption of the Units in the Scheme of the Fund.\nCut off timing for subscriptions/ redemptions/ switches This is the time before which your application (complete in all respects) should reach the official points of acceptance. | The below cut-off timings and applicability of NAV shall be applicable in respect of valid applications received at the Official Point(s) of Acceptance on a Business Day: A] For Purchase (including switch-in) of any amount: In respect of valid applications received upto 3.00 p.m. and where the funds for the entire amount are available for utilization before the cut- off time i.e. credited to the bank account of the Scheme before the cut- off time - the closing NAV of the day shall be applicable. In respect of valid applications received after 3.00 p.m. and where the funds for the entire amount are credited to the bank account of the Scheme either at any time on the same day or before the cut-off time of the next Business Day i.e. available for utilization before the cut-off time of the next Business Day - the closing NAV of the next Business Day shall be applicable. Irrespective of the time of receipt of application, where the funds for the entire amount are credited to the bank account of the Scheme before the cut-off time on any subsequent Business Day i.e. available for utilization before the cut-off time on any subsequent Business Day - the closing NAV of such subsequent Business Day shall be applicable. B] For Switch-ins of any amount: For determining the applicable NAV, the following shall be ensured: Application for switch-in is received before the applicable cut-off time. Funds for the entire amount of subscription/purchase as per the switch-in request are credited to the bank account of the Scheme before the cut-off time. The funds are available for utilization before the cut-off time. In case of ‘switch’ transactions from one scheme to another, the allocation shall be in line with redemption payouts. In case of switches, the request should be received on a day which is a Business Day for the Switch-out scheme. Redemption for switch-out shall be processed at the applicable NAV as per cut-off timing. Switch- in will be processed at the Applicable NAV (on a Business Day) based"
+        },
+        {
+          "chunk_id": "sid:sid---sbi-focused-fund:0032",
+          "score": 0.8004615902900696,
+          "source_document": "sid---sbi-focused-fund.pdf",
+          "document_type": "sid",
+          "page_number": "14-16",
+          "section_heading": "H. ADDITIONAL SCHEME RELATED DISCLOSURES",
+          "text": "site of the AMC and on the website of AMFI by 10:00 a.m. of the following business day\nin line with Paragraph 8.2 of Master Circular for mutual funds.\nIn case of non-availability of price/valuation for the underlying overseas investments before aforementioned\ntimeline, consequent to which there would be inability in capturing same day price/valuation for such\nunderlying investments, then NAV of the Scheme will be declared as and when the price/valuation for such\nunderlying securities/ Funds is available.\nIn case of any delay, the reasons for such delay would be explained to AMFI and SEBI by the next day. If\nthe NAVs are not available before commencement of business hours on the following day due to any reason,\nthe Fund shall issue a press release providing reasons and explaining when the Fund would be able to\npublish the NAVs.\nFurther, as per SEBI Regulations, the repurchase price shall not be lower than 95% of the NAV.\nIllustration on computation of NAV: If the net assets of the Scheme are Rs.10,45,34,345.34 and units\noutstanding are 10,000,000, then the NAV per unit will be computed as follows: 10,45,34,345.34 /\n10,000,000 = Rs. 10.4534 p.u. (rounded off to four decimals)"
+        },
+        {
+          "chunk_id": "sid:sid---sbi-small-cap-fund:0033",
+          "score": 0.792585015296936,
+          "source_document": "sid---sbi-small-cap-fund.pdf",
+          "document_type": "sid",
+          "page_number": "14-16",
+          "section_heading": "iv. Portfolio Turnover Ratio as on September 30, 2025: 1.02",
+          "text": "are not available before commencement of\nbusiness hours on the following day due to any reason, the Fund shall issue a press release providing reasons\nand explaining when the Fund would be able to publish the NAVs.\nHowever, whenever the Scheme also invests in foreign securities, the NAVs of Scheme shall be updated on\ndaily basis on the website of the AMC and on the website of AMFI by 10:00 a.m. of the following business day\nin line with Paragraph 8.2 of SEBI Master Circular for mutual funds dated June 27, 2024\nIn case of non-availability of price/valuation for the underlying overseas investments before aforementioned\ntimeline, consequent to which there would be inability in capturing same day price/valuation for such underlying\ninvestments, then NAV of the Scheme will be declared as and when the price/valuation for such underlying\nsecurities/ Funds is available.\nFurther, as per SEBI Regulations, the repurchase price shall not be lower than 95% of the NAV.\nIllustration on computation of NAV: If the net assets of the Scheme are Rs.10,45,34,345.34 and units\noutstanding are 10,000,000, then the NAV per unit will be computed as follows: 10,45,34,345.34 / 10,000,000 ="
+        },
+        {
+          "chunk_id": "sid:sid---sbi-midcap-fund:0034",
+          "score": 0.7882703542709351,
+          "source_document": "sid---sbi-midcap-fund.pdf",
+          "document_type": "sid",
+          "page_number": "14-17",
+          "section_heading": "H. ADDITIONAL SCHEME RELATED DISCLOSURES",
+          "text": "art III- OTHER DETAILS\nA.\nCOMPUTATION OF NAV\nNAV of the Scheme shall be computed and declared on every business day. The NAV under the Scheme would be\nrounded off to four decimals as follows or such other formula as may be prescribed by SEBI from time to time:\nMarket or Fair Value of Scheme’s investments + Current Assets - Current Liabilities and Provision\nNAV = ---------------------------------------------------------------------------------------------------------\nNo of Units outstanding under Scheme on the Valuation Date\nNAV will be disclosed under SEBI (Mutual Funds) Regulations, 1996. NAV can also be viewed on www.sbimf.com\nand www.amfiindia.com.\nThe AMC shall update the NAVs on the website of Association of Mutual Funds in India - AMFI (www.amfiindia.com)\nand on Fund website www.sbimf.com by 11.00 p.m. on daily basis. In case of any delay, the reasons for such delay\nwould be explained to AMFI and SEBI by the next day. If the NAVs are not available before commencement of\nbusiness hours on the following day due to any reason, the Fund shall issue a press release providing reasons and\nexplaining when the Fund would be able to publish the NAVs."
+        }
+      ],
+      "error": null,
+      "faithfulness": 1.0,
+      "context_precision": 1.0,
+      "context_recall": null,
+      "answer_relevancy": 0.9006968845421479
+    },
+    {
+      "id": "fact_10",
+      "category": "factual_lookup",
+      "question": "What is the lock-in period for Fund F if it is an ELSS scheme?",
+      "expected_answer": "[FILL IN FROM SID — ELSS funds should state a 3-year statutory lock-in; verify against the actual SID text]",
+      "no_ground_truth_answer_yet": true,
+      "answer": "The retrieved documents do not contain information about the lock‑in period for Fund F as an ELSS scheme.",
+      "citations": [],
+      "retrieved": [
+        {
+          "chunk_id": "drhp:DRHP Arjun Jewellers:0372",
+          "score": 0.7109869718551636,
+          "source_document": "DRHP Arjun Jewellers.pdf",
+          "document_type": "drhp",
+          "page_number": "113-116",
+          "section_heading": "CAPITAL STRUCTURE",
+          "text": "e Issue. However, the above lock in\nof Equity Shares shall not be applicable to (a) the Equity Shares Allotted pursuant to the Offer for Sale; (b) any\nEquity Shares allotted to eligible employees of the Company, whether currently employees or not (or such persons\nas permitted under the SEBI SBEB Regulations or the ESOP) pursuant to the ESOP Scheme; and (c) the Equity\nShares held by VCFs or Category I AIF or Category II AIF, subject to certain conditions set out in Regulation 17\nof the SEBI ICDR Regulations, However, such Equity Shares shall be locked-in for a period of at least six months\nfrom the date of purchase by the VCFs or Category I AIF or Category II AIF or FVCI.\nAs on the date of this Draft Red Herring Prospectus, none of our Equity Shares are held by any VCF or Category\nI AIF or Category II AIF or FVCI.\n12. Lock-in of Equity Shares Allotted to Anchor Investors\nIn terms of the SEBI ICDR Regulations, 50% of the Equity Shares allotted to Anchor Investors under the Anchor\nInvestor Portion shall be locked-in for a period of 90 days from the date of Allotment, and the remaining 50% of"
+        },
+        {
+          "chunk_id": "sid:SID - HDFC Flexi Cap Fund dated November 21, 2025_0:0160",
+          "score": 0.7098707556724548,
+          "source_document": "SID - HDFC Flexi Cap Fund dated November 21, 2025_0.pdf",
+          "document_type": "sid",
+          "page_number": "51-56",
+          "section_heading": "ii. The correlation for past 90 days between the part of the portfolio (excluding the hedged",
+          "text": "mes under the\nsame AMC or in schemes under the management of any other asset management shall not exceed 5%\nof the net asset value of the Mutual Fund.\nProvided that the Scheme shall not invest in any fund of funds scheme.\n• Pending deployment of funds of the Scheme in securities in terms of the investment objectives of the\nScheme, the Fund may park the funds of the Scheme in short term deposits of scheduled commercial\nbanks subject to the following guidelines as specified by clause 12.16 of Master Circular, as amended\nfrom time to time.\n● “Short Term” for parking of funds shall be treated as a period not exceeding 91 days.\n● Short Term deposits shall be held in the name of the Scheme.\n● The Scheme(s) shall not park more than 15% of the net assets in short term deposit(s) of all the\nscheduled commercial banks put together.\n● However, this limit can be raised upto 20% of the net assets with prior approval of the Board of\nTrustees.\n● Parking of funds in short term deposits of associate and sponsor scheduled commercial banks\ntogether shall not exceed 20% of total deployment by the Mutual Fund in short term deposits."
+        },
+        {
+          "chunk_id": "sid:SID - HDFC Mid Cap Fund dated November 21, 2025_1:0171",
+          "score": 0.7042150497436523,
+          "source_document": "SID - HDFC Mid Cap Fund dated November 21, 2025_1.pdf",
+          "document_type": "sid",
+          "page_number": "62",
+          "section_heading": "D. OTHER SCHEME SPECIFIC DISCLOSURES",
+          "text": "[TABLE]\n | It is clarified that since the occurrence of the abovementioned eventualities have the ability to impact the overall market and liquidity situation, the same may result in exceptionally large number of Redemption requests being made and in such a situation the indicative timelines, if any mentioned by the Fund in the scheme offering documents, for processing of requests for Redemption may not be applicable. Any restriction on Redemption or suspension of Redemption of the Units in the Scheme(s) of the Mutual Fund shall be made applicable only after specific approval of the Board of Directors of the AMC and Trustee Company and thereafter, immediately informing the same to SEBI. The AMC / Trustee reserves the right to change / modify the provisions of right to restrict Redemption and / or suspend Redemption of the Units in the Scheme of the Fund.\nCut off timing for subscriptions/ redemptions/ switches This is the time before which your application (complete in all respects) should reach the official points of acceptance. | The below cut-off timings and applicability of NAV shall be applicable in respect of valid applications received at the Official Point(s) of Acceptance on a Business Day: A] For Purchase (including switch-in) of any amount: In respect of valid applications received upto 3.00 p.m. and where the funds for the entire amount are available for utilization before the cut- off time i.e. credited to the bank account of the Scheme before the cut- off time - the closing NAV of the day shall be applicable. In respect of valid applications received after 3.00 p.m. and where the funds for the entire amount are credited to the bank account of the Scheme either at any time on the same day or before the cut-off time of the next Business Day i.e. available for utilization before the cut-off time of the next Business Day - the closing NAV of the next Business Day shall be applicable. Irrespective of the time of receipt of application, where the funds for the entire amount are credited to the bank account of the Scheme before the cut-off time on any subsequent Business Day i.e. available for utilization before the cut-off time on any subsequent Business Day - the closing NAV of such subsequent Business Day shall be applicable. B] For Switch-ins of any amount: For determining the applicable NAV, the following shall be ensured: Application for switch-in is received before the applicable cut-off time. Funds for the entire amount of subscription/purchase as per the switch-in request are credited to the bank account of the Scheme before the cut-off time. The funds are available for utilization before the cut-off time. In case of ‘switch’ transactions from one scheme to another, the allocation shall be in line with redemption payouts. In case of switches, the request should be received on a day which is a Business Day for the Switch-out scheme. Redemption for switch-out shall be processed at the applicable NAV as per cut-off timing. Switch- in will be processed at the Applicable NAV (on a Business Day) based"
+        },
+        {
+          "chunk_id": "sid:SID - HDFC Small Cap Fund dated November 21, 2025_0:0171",
+          "score": 0.7042150497436523,
+          "source_document": "SID - HDFC Small Cap Fund dated November 21, 2025_0.pdf",
+          "document_type": "sid",
+          "page_number": "61",
+          "section_heading": "D. OTHER SCHEME SPECIFIC DISCLOSURES",
+          "text": "[TABLE]\n | It is clarified that since the occurrence of the abovementioned eventualities have the ability to impact the overall market and liquidity situation, the same may result in exceptionally large number of Redemption requests being made and in such a situation the indicative timelines, if any mentioned by the Fund in the scheme offering documents, for processing of requests for Redemption may not be applicable. Any restriction on Redemption or suspension of Redemption of the Units in the Scheme(s) of the Mutual Fund shall be made applicable only after specific approval of the Board of Directors of the AMC and Trustee Company and thereafter, immediately informing the same to SEBI. The AMC / Trustee reserves the right to change / modify the provisions of right to restrict Redemption and / or suspend Redemption of the Units in the Scheme of the Fund.\nCut off timing for subscriptions/ redemptions/ switches This is the time before which your application (complete in all respects) should reach the official points of acceptance. | The below cut-off timings and applicability of NAV shall be applicable in respect of valid applications received at the Official Point(s) of Acceptance on a Business Day: A] For Purchase (including switch-in) of any amount: In respect of valid applications received upto 3.00 p.m. and where the funds for the entire amount are available for utilization before the cut- off time i.e. credited to the bank account of the Scheme before the cut- off time - the closing NAV of the day shall be applicable. In respect of valid applications received after 3.00 p.m. and where the funds for the entire amount are credited to the bank account of the Scheme either at any time on the same day or before the cut-off time of the next Business Day i.e. available for utilization before the cut-off time of the next Business Day - the closing NAV of the next Business Day shall be applicable. Irrespective of the time of receipt of application, where the funds for the entire amount are credited to the bank account of the Scheme before the cut-off time on any subsequent Business Day i.e. available for utilization before the cut-off time on any subsequent Business Day - the closing NAV of such subsequent Business Day shall be applicable. B] For Switch-ins of any amount: For determining the applicable NAV, the following shall be ensured: Application for switch-in is received before the applicable cut-off time. Funds for the entire amount of subscription/purchase as per the switch-in request are credited to the bank account of the Scheme before the cut-off time. The funds are available for utilization before the cut-off time. In case of ‘switch’ transactions from one scheme to another, the allocation shall be in line with redemption payouts. In case of switches, the request should be received on a day which is a Business Day for the Switch-out scheme. Redemption for switch-out shall be processed at the applicable NAV as per cut-off timing. Switch- in will be processed at the Applicable NAV (on a Business Day) based"
+        },
+        {
+          "chunk_id": "drhp:DRHP Arjun Jewellers:1625",
+          "score": 0.7034459114074707,
+          "source_document": "DRHP Arjun Jewellers.pdf",
+          "document_type": "drhp",
+          "page_number": "409-450",
+          "section_heading": "TERMS OF THE ISSUE",
+          "text": "the balance duration of\nthe lock-in period.\nc) In the event that a pledge on any such Equity Shares is invoked by a pledgee/lender or released back to\nthe pledgor, such Equity Shares shall continue to be subject to the lock-in for the remainder of the\napplicable regulatory period. The transfer of Equity Shares upon invocation of the pledge shall not\nexempt the securities from the lock-in requirements.\nd) The Company shall ensure that any lender or pledgee is formally notified of these lock-in restrictions as\nper applicable Law. No transfer of such locked-in Equity Shares shall be recognized by the Company or\nthe registrar and transfer agent if such transfer violates the SEBI ICDR Regulations or this Article or\napplicable Law.\ne) Notwithstanding anything contained in these Articles, provisions of this Article shall override any other\nprovisions in these Articles relating to the transfer and transmission of shares during the applicable\nregulatory period.\nThe copies of the following documents and contracts which have been entered or are to be entered into by our\nCompany which are or may be deemed material have been entered or are to be entered into by our Company."
+        }
+      ],
+      "error": null,
+      "faithfulness": 1.0,
+      "context_precision": 0.0,
+      "context_recall": null,
+      "answer_relevancy": 0.9448192312892463
+    },
+    {
+      "id": "def_01",
+      "category": "definitional",
+      "question": "What is an SIP (Systematic Investment Plan)?",
+      "expected_answer": "An SIP is a method of investing a fixed amount at regular intervals (e.g. monthly) into a mutual fund scheme, rather than investing a lump sum at once. It allows rupee-cost averaging and disciplined investing over time.",
+      "no_ground_truth_answer_yet": false,
+      "answer": "A Systematic Investment Plan (SIP) is a facility offered by mutual‑fund schemes that lets an investor commit to investing a fixed amount at regular intervals – such as daily, weekly, monthly, quarterly, semi‑annual or annual. By investing periodically, the investor can average the purchase cost of units over time and reduce the impact of short‑term market fluctuations.",
+      "citations": [
+        {
+          "source_document": "sid---sbi-focused-fund.pdf",
+          "document_type": "sid",
+          "page_number": "45"
+        },
+        {
+          "source_document": "sid---sbi-small-cap-fund.pdf",
+          "document_type": "sid",
+          "page_number": "45"
+        }
+      ],
+      "retrieved": [
+        {
+          "chunk_id": "sid:SID - HDFC Flexi Cap Fund dated November 21, 2025_0:0014",
+          "score": 0.7913162708282471,
+          "source_document": "SID - HDFC Flexi Cap Fund dated November 21, 2025_0.pdf",
+          "document_type": "sid",
+          "page_number": "7",
+          "section_heading": "PART I. HIGHLIGHTS/SUMMARY OF THE SCHEME",
+          "text": "[TABLE]\n | | MICRO SYSTEMATIC INVESTMENT PLAN (\"MICRO SIP\")/ PAN EXEMPT INVESTMENTS Investor i.e. either all joint holders or the first holder who do not hold PAN or are PAN exempt investors may invest (via lumpsum/SIP) up to Rs. 50,000 per year per investor. Such PAN exempt SIPs are referred to as Micro SIP. SIP PAUSE FACILITY The Fund offers Systematic Investment Plan (\"SIP\") Pause facility for investors who wish to temporarily pause their SIP in the Schemes of the Fund. FLEX SYSTEMATIC INVESTMENT PLAN (FLEXSIP) Flex SIP is a facility whereby investors can invest at predetermined intervals in Growth Option of open ended equity and hybrid schemes (the eligible schemes) of the Fund, higher amount(s) determined by a formula linked to value of investments, to take advantage of market movements. DREAM SIP FACILITY Under this facility, an investor can register for an SIP (Systematic Investment Plan) cum SWAP (Systematic Withdrawal Advantage Plan) for specified duration. SWAP installments will commence on completion of the SIP tenure. The investor has the option to register the SIP and SWAP in the same scheme or different schemes. CHHOTI SIP FACILITY This facility will be available only to first-time individual investors to the industry excluding minors and will be restricted to three SIPs (one each in upto 3 Asset Management Companies) (“Chhoti SIP”). Investor who initiates any SIP other than Chhoti SIP or makes lumpsum investment shall not be considered as a Chhoti SIP investor for any subsequent investments at industry level. However, SIPs that were Chhoti SIP at the time of investment shall continue as Chhoti SIP. This facility is available only under the Growth option of the Scheme. OTM - ONE TIME MANDATE ('FACILITY') OTM is a simple and convenient facility that enables the Unit holders to transact in the Schemes of the Fund by submitting OTM - One Time Mandate registration form to the Fund. Through OTM, investor authorizes the bank to debit their account upto a certain specified limit per transaction, on request received from the Fund, as and when the transaction is to be undertaken by the Unit holder, without the need of submitting cheque or fund transfer letter with every transaction thereafter. SYSTEMATIC TRANSFER PLAN (STP) A Unit holder holding units in non-demat form may enroll for the Systematic Transfer Plan and choose to Switch on a daily,"
+        },
+        {
+          "chunk_id": "sid:sid---sbi-focused-fund:0106",
+          "score": 0.7838054895401001,
+          "source_document": "sid---sbi-focused-fund.pdf",
+          "document_type": "sid",
+          "page_number": "45",
+          "section_heading": "G. Other Scheme Specific Disclosures",
+          "text": "[TABLE]\n | 2 | Not mentioned | Direct | Direct Plan\n | 3 | Not mentioned | Regular | Direct Plan\n | 4 | Mentioned | Direct | Direct Plan\n | 5 | Direct | Not Mentioned | Direct Plan\n | 6 | Direct | Regular | Direct Plan\n | 7 | Mentioned | Regular | Regular Plan\n | 8 | Mentioned | Not Mentioned | Regular Plan\nSpecial Products | i) Systematic Investment Plan For investors, the fund offers a Systematic Investment Plan (SIP) at all our Official point of acceptance of SBI MF’s locations. Under this Facility, an investor can invest a fixed amount per frequency. This facility will help the investor to average Payout their cost of Reinvestment over a period of six months or one year and thus overcome the short-term fluctuations in the market. The Scheme offers daily, weekly, Monthly, Quarterly, Semi- Annual & Annual Systematic Investment Plan. Terms and conditions for Daily SIP are as follows: | | |"
+        },
+        {
+          "chunk_id": "sid:SID - HDFC Mid Cap Fund dated November 21, 2025_1:0014",
+          "score": 0.7706020474433899,
+          "source_document": "SID - HDFC Mid Cap Fund dated November 21, 2025_1.pdf",
+          "document_type": "sid",
+          "page_number": "7",
+          "section_heading": "PART I. HIGHLIGHTS/SUMMARY OF THE SCHEME",
+          "text": "[TABLE]\n | | lumpsum/SIP) up to Rs. 50,000 per year per investor. Such PAN exempt SIPs are referred to as Micro SIP. SIP PAUSE FACILITY The Fund offers Systematic Investment Plan (\"SIP\") Pause facility for investors who wish to temporarily pause their SIP in the Schemes of the Fund. FLEX SYSTEMATIC INVESTMENT PLAN (FLEXSIP) Flex SIP is a facility whereby investors can invest at predetermined intervals in Growth Option of open ended equity and hybrid schemes (the eligible schemes) of the Fund, higher amount(s) determined by a formula linked to value of investments, to take advantage of market movements. DREAM SIP FACILITY Under this facility, an investor can register for an SIP (Systematic Investment Plan) cum SWAP (Systematic Withdrawal Advantage Plan) for specified duration. SWAP installments will commence on completion of the SIP tenure. The investor has the option to register the SIP and SWAP in the same scheme or different schemes. OTM - ONE TIME MANDATE ('FACILITY') OTM is a simple and convenient facility that enables the Unit holders to transact in the Schemes of the Fund by submitting OTM - One Time Mandate registration form to the Fund. Through OTM, investor authorizes the bank to debit their account upto a certain specified limit per transaction, on request received from the Fund, as and when the transaction is to be undertaken by the Unit holder, without the need of submitting cheque or fund transfer letter with every transaction thereafter. SYSTEMATIC TRANSFER PLAN (STP) A Unit holder holding units in non-demat form may enroll for the Systematic Transfer Plan and choose to Switch on a daily, weekly, monthly or quarterly basis from one HDFC Mutual Fund scheme to another scheme, which is available for investment at that time. HDFC FLEX SYSTEMATIC TRANSFER PLAN HDFC Flex Systematic Transfer Plan (Flex STP) is a facility wherein unit holder(s) holding units in non-demat form can opt to transfer variable amount(s) linked to value of investments under Flex STP on the Mandate of transfer at pre-determined intervals from designated open-ended Scheme(s) of HDFC Mutual Fund i.e. Transferor Scheme to the Growth Option of designated open- ended Scheme(s) of HDFC Mutual Fund i.e. Transferee Scheme. HDFC SWING SYSTEMATIC TRANSFER PLAN HDFC Swing Systematic Transfer Plan (Swing STP) is a facility wherein unit holder(s) holding units in non-demat form can opt to transfer an amount at regular intervals from designated open-"
+        },
+        {
+          "chunk_id": "sid:SID - HDFC Small Cap Fund dated November 21, 2025_0:0014",
+          "score": 0.7706020474433899,
+          "source_document": "SID - HDFC Small Cap Fund dated November 21, 2025_0.pdf",
+          "document_type": "sid",
+          "page_number": "7",
+          "section_heading": "PART I. HIGHLIGHTS/SUMMARY OF THE SCHEME",
+          "text": "[TABLE]\n | | lumpsum/SIP) up to Rs. 50,000 per year per investor. Such PAN exempt SIPs are referred to as Micro SIP. SIP PAUSE FACILITY The Fund offers Systematic Investment Plan (\"SIP\") Pause facility for investors who wish to temporarily pause their SIP in the Schemes of the Fund. FLEX SYSTEMATIC INVESTMENT PLAN (FLEXSIP) Flex SIP is a facility whereby investors can invest at predetermined intervals in Growth Option of open ended equity and hybrid schemes (the eligible schemes) of the Fund, higher amount(s) determined by a formula linked to value of investments, to take advantage of market movements. DREAM SIP FACILITY Under this facility, an investor can register for an SIP (Systematic Investment Plan) cum SWAP (Systematic Withdrawal Advantage Plan) for specified duration. SWAP installments will commence on completion of the SIP tenure. The investor has the option to register the SIP and SWAP in the same scheme or different schemes. OTM - ONE TIME MANDATE ('FACILITY') OTM is a simple and convenient facility that enables the Unit holders to transact in the Schemes of the Fund by submitting OTM - One Time Mandate registration form to the Fund. Through OTM, investor authorizes the bank to debit their account upto a certain specified limit per transaction, on request received from the Fund, as and when the transaction is to be undertaken by the Unit holder, without the need of submitting cheque or fund transfer letter with every transaction thereafter. SYSTEMATIC TRANSFER PLAN (STP) A Unit holder holding units in non-demat form may enroll for the Systematic Transfer Plan and choose to Switch on a daily, weekly, monthly or quarterly basis from one HDFC Mutual Fund scheme to another scheme, which is available for investment at that time. HDFC FLEX SYSTEMATIC TRANSFER PLAN HDFC Flex Systematic Transfer Plan (Flex STP) is a facility wherein unit holder(s) holding units in non-demat form can opt to transfer variable amount(s) linked to value of investments under Flex STP on the Mandate of transfer at pre-determined intervals from designated open-ended Scheme(s) of HDFC Mutual Fund i.e. Transferor Scheme to the Growth Option of designated open- ended Scheme(s) of HDFC Mutual Fund i.e. Transferee Scheme. HDFC SWING SYSTEMATIC TRANSFER PLAN HDFC Swing Systematic Transfer Plan (Swing STP) is a facility wherein unit holder(s) holding units in non-demat form can opt to transfer an amount at regular intervals from designated open-"
+        },
+        {
+          "chunk_id": "sid:sid---sbi-small-cap-fund:0109",
+          "score": 0.7593727707862854,
+          "source_document": "sid---sbi-small-cap-fund.pdf",
+          "document_type": "sid",
+          "page_number": "45",
+          "section_heading": "e. Transfer of investments from one scheme to another scheme, including this scheme, under the Mutual Fund",
+          "text": "[TABLE]\n | All on-going existing SIPs, STP-in registered before February 04, 2021 will continue to be processed in the Scheme. The AMC reserves the right to reject the application and refund the amount without any notice to the investor, if the application made under the Scheme is not in line with the applicable provisions of the Scheme related Document or on reaching the net inflows limit as specified above. Further, the Trustees of SBI Mutual Fund may at their sole and absolute discretion decide to close the investment under the Scheme at any time. i) Systematic Investment Plan For investors, the fund offers a Systematic Investment Plan (SIP) at all our Official point of acceptance of SBI MF’s locations. Under this Facility, an investor can invest a fixed amount per frequency. This facility will help the investor to average out their cost of investment over a period of six months or one year and thus overcome the short-term fluctuations in the market. The Scheme offers Daily, weekly, Monthly, Quarterly, Systematic Investment Plan. Terms and conditions for Daily SIP are as follows: 1. Minimum Investment Amount: INR 500 and multiples of INR 1 thereafter. Minimum number of instalments would be 12. 2. SIP Top up facility would not be available under this facility 3. Investors enrolling for Daily SIP should select “As & when presented” as payment frequency in the OTM. a) Terms & conditions for Monthly, Quarterly, Systematic investment plan are as follows: Monthly – Minimum Rs. 1000 & in multiples of Re. 1 thereafter for minimum 6 months or Minimum Rs. 500 & in multiples of Re. 1 thereafter for minimum 12 months Quarterly - Minimum Rs. 1500 & in multiples of Re. 1 thereafter for minimum 1 year b) Weekly Systematic Investment Plan The terms & conditions for the weekly SIP are as follows: 1) Minimum amount for weekly SIP – Rs. 1000 and in multiples of Re.1 thereafter. 2) Minimum number of installments will be 6. 3) Date based feature - Weekly SIP will be done on 1st, 8th, 15th & Fund of the month 4) In case the date of SIP falls on a Non-Business Day, then the immediate following Business Day will be considered for the purpose of transfer. 5) In Day based feature, investors may select any Day of the Week viz. Monday/ Tuesday/ Wednesday/ Thursday/ Friday on which Weekly SIP/STP/SWP instalment shall be processed and in case any of these days is a non-"
+        }
+      ],
+      "error": null,
+      "faithfulness": 1.0,
+      "context_precision": 1.0,
+      "context_recall": 1.0,
+      "answer_relevancy": 0.8070883144159464
+    },
+    {
+      "id": "def_02",
+      "category": "definitional",
+      "question": "What is an STP (Systematic Transfer Plan), and how is it different from an SIP?",
+      "expected_answer": "An STP transfers a fixed amount or units at regular intervals from one mutual fund scheme to another (typically from a debt/liquid fund into an equity fund), usually within the same AMC. Unlike an SIP, which invests fresh money from a bank account, an STP moves money that is already invested in one fund into another.",
+      "no_ground_truth_answer_yet": false,
+      "answer": "A Systematic Transfer Plan (STP) is a facility that lets a unit holder move (transfer) a specified amount of money at regular intervals from one mutual‑fund scheme to another. It works by systematically withdrawing from a source scheme and investing the proceeds into a target scheme (e.g., daily, weekly, monthly or quarterly transfers) and can be set up for non‑demat holdings. In contrast, a Systematic Investment Plan (SIP) is a facility that allows an investor to invest a fixed amount of fresh money at regular intervals into a chosen scheme. SIP is purely an investment mechanism, whereas STP combines a systematic withdrawal from one scheme with a systematic investment into another scheme, effectively shifting existing holdings rather than adding new money.",
+      "citations": [
+        {
+          "source_document": "SID - HDFC Mid Cap Fund dated November 21, 2025_1.pdf",
+          "document_type": "sid",
+          "page_number": "7"
+        },
+        {
+          "source_document": "sid---sbi-focused-fund.pdf",
+          "document_type": "sid",
+          "page_number": "6"
+        }
+      ],
+      "retrieved": [
+        {
+          "chunk_id": "sid:SID - HDFC Mid Cap Fund dated November 21, 2025_1:0014",
+          "score": 0.7465876340866089,
+          "source_document": "SID - HDFC Mid Cap Fund dated November 21, 2025_1.pdf",
+          "document_type": "sid",
+          "page_number": "7",
+          "section_heading": "PART I. HIGHLIGHTS/SUMMARY OF THE SCHEME",
+          "text": "[TABLE]\n | | lumpsum/SIP) up to Rs. 50,000 per year per investor. Such PAN exempt SIPs are referred to as Micro SIP. SIP PAUSE FACILITY The Fund offers Systematic Investment Plan (\"SIP\") Pause facility for investors who wish to temporarily pause their SIP in the Schemes of the Fund. FLEX SYSTEMATIC INVESTMENT PLAN (FLEXSIP) Flex SIP is a facility whereby investors can invest at predetermined intervals in Growth Option of open ended equity and hybrid schemes (the eligible schemes) of the Fund, higher amount(s) determined by a formula linked to value of investments, to take advantage of market movements. DREAM SIP FACILITY Under this facility, an investor can register for an SIP (Systematic Investment Plan) cum SWAP (Systematic Withdrawal Advantage Plan) for specified duration. SWAP installments will commence on completion of the SIP tenure. The investor has the option to register the SIP and SWAP in the same scheme or different schemes. OTM - ONE TIME MANDATE ('FACILITY') OTM is a simple and convenient facility that enables the Unit holders to transact in the Schemes of the Fund by submitting OTM - One Time Mandate registration form to the Fund. Through OTM, investor authorizes the bank to debit their account upto a certain specified limit per transaction, on request received from the Fund, as and when the transaction is to be undertaken by the Unit holder, without the need of submitting cheque or fund transfer letter with every transaction thereafter. SYSTEMATIC TRANSFER PLAN (STP) A Unit holder holding units in non-demat form may enroll for the Systematic Transfer Plan and choose to Switch on a daily, weekly, monthly or quarterly basis from one HDFC Mutual Fund scheme to another scheme, which is available for investment at that time. HDFC FLEX SYSTEMATIC TRANSFER PLAN HDFC Flex Systematic Transfer Plan (Flex STP) is a facility wherein unit holder(s) holding units in non-demat form can opt to transfer variable amount(s) linked to value of investments under Flex STP on the Mandate of transfer at pre-determined intervals from designated open-ended Scheme(s) of HDFC Mutual Fund i.e. Transferor Scheme to the Growth Option of designated open- ended Scheme(s) of HDFC Mutual Fund i.e. Transferee Scheme. HDFC SWING SYSTEMATIC TRANSFER PLAN HDFC Swing Systematic Transfer Plan (Swing STP) is a facility wherein unit holder(s) holding units in non-demat form can opt to transfer an amount at regular intervals from designated open-"
+        },
+        {
+          "chunk_id": "sid:SID - HDFC Small Cap Fund dated November 21, 2025_0:0014",
+          "score": 0.7465876340866089,
+          "source_document": "SID - HDFC Small Cap Fund dated November 21, 2025_0.pdf",
+          "document_type": "sid",
+          "page_number": "7",
+          "section_heading": "PART I. HIGHLIGHTS/SUMMARY OF THE SCHEME",
+          "text": "[TABLE]\n | | lumpsum/SIP) up to Rs. 50,000 per year per investor. Such PAN exempt SIPs are referred to as Micro SIP. SIP PAUSE FACILITY The Fund offers Systematic Investment Plan (\"SIP\") Pause facility for investors who wish to temporarily pause their SIP in the Schemes of the Fund. FLEX SYSTEMATIC INVESTMENT PLAN (FLEXSIP) Flex SIP is a facility whereby investors can invest at predetermined intervals in Growth Option of open ended equity and hybrid schemes (the eligible schemes) of the Fund, higher amount(s) determined by a formula linked to value of investments, to take advantage of market movements. DREAM SIP FACILITY Under this facility, an investor can register for an SIP (Systematic Investment Plan) cum SWAP (Systematic Withdrawal Advantage Plan) for specified duration. SWAP installments will commence on completion of the SIP tenure. The investor has the option to register the SIP and SWAP in the same scheme or different schemes. OTM - ONE TIME MANDATE ('FACILITY') OTM is a simple and convenient facility that enables the Unit holders to transact in the Schemes of the Fund by submitting OTM - One Time Mandate registration form to the Fund. Through OTM, investor authorizes the bank to debit their account upto a certain specified limit per transaction, on request received from the Fund, as and when the transaction is to be undertaken by the Unit holder, without the need of submitting cheque or fund transfer letter with every transaction thereafter. SYSTEMATIC TRANSFER PLAN (STP) A Unit holder holding units in non-demat form may enroll for the Systematic Transfer Plan and choose to Switch on a daily, weekly, monthly or quarterly basis from one HDFC Mutual Fund scheme to another scheme, which is available for investment at that time. HDFC FLEX SYSTEMATIC TRANSFER PLAN HDFC Flex Systematic Transfer Plan (Flex STP) is a facility wherein unit holder(s) holding units in non-demat form can opt to transfer variable amount(s) linked to value of investments under Flex STP on the Mandate of transfer at pre-determined intervals from designated open-ended Scheme(s) of HDFC Mutual Fund i.e. Transferor Scheme to the Growth Option of designated open- ended Scheme(s) of HDFC Mutual Fund i.e. Transferee Scheme. HDFC SWING SYSTEMATIC TRANSFER PLAN HDFC Swing Systematic Transfer Plan (Swing STP) is a facility wherein unit holder(s) holding units in non-demat form can opt to transfer an amount at regular intervals from designated open-"
+        },
+        {
+          "chunk_id": "sid:sid---sbi-small-cap-fund:0115",
+          "score": 0.739911675453186,
+          "source_document": "sid---sbi-small-cap-fund.pdf",
+          "document_type": "sid",
+          "page_number": "51",
+          "section_heading": "e. Transfer of investments from one scheme to another scheme, including this scheme, under the Mutual Fund",
+          "text": "[TABLE]\n | case investor selects Weekly frequency and does not select Day based or Date -based Weekly STP, default will be considered as ‘Day based Weekly SIP/STP/SWP’.7.If investor selects Day based Weekly STP but does not mention ‘Day’ on which the Weekly STP instalment to be processed, then ‘Wednesday’ will be considered as the default Day. 4. Exit load shall be as is applicable in the target/source schemes. Default frequency for STP is Monthly & default date for the start of STP is 10th. Flex Systematic Transfer Plan in all the open-ended schemes of SBI Mutual Fund offering Systematic Transfer Plan (STP) facility: Flex Systematic Transfer Plan is a facility wherein an investor under a designated open-ended Scheme can opt to transfer variable amounts linked to the value of his investments on the date of transfer at pre-determined intervals from designated open-ended scheme (source scheme) to the Growth option of another open-ended scheme (target scheme). Terms and conditions of Flex STP are as follows: 1. The amount to be transferred under Flex STP from source scheme to target scheme shall be calculated using the below formula: Flex STP amount [(fixed amount to be transferred per installment x number of installments already executed, including the current installment) - market value of the investments through Flex STP in the Transferee Scheme on the date of transfer] 2. The first Flex STP installment will be processed for the fixed installment amount specified by the investor at the time of enrolment. From the second Flex STP installment onwards, the transfer amount shall be computed as per formula stated above. 3. Flex STP would be available for Weekly, Monthly and Quarterly frequencies. 4. Weekly Flex STP can be done on 1st / 8th / 15th / Fund of every month. 5. Flex STP is available from “Daily / Weekly” IDCW plans of the source schemes. 6. Flex STP is available only in “Growth” option of the target scheme. 7. If there is any other financial transaction (purchase, redemption or switch) processed in the target scheme during the tenure of Flex STP, the Flex STP will be processed as normal STP for the rest of the installments for a fixed amount. 8. A single Flex STP Enrolment Form can be filled for transfer into one Scheme/Plan/Option only. 9. In case the date of transfer falls on a Non-Business Day, then the immediate following Business Day will be considered for the purpose of determining the applicability of NAV. 10. In case the amount (as per the formula) to be transferred is not available in the source scheme in the investor’s"
+        },
+        {
+          "chunk_id": "sid:sid---sbi-focused-fund:0008",
+          "score": 0.7323459386825562,
+          "source_document": "sid---sbi-focused-fund.pdf",
+          "document_type": "sid",
+          "page_number": "6",
+          "section_heading": "Part I. HIGHLIGHTS/SUMMARY OF THE SCHEME",
+          "text": "[TABLE]\nXXIV | Special product/facility available during the NFO and on ongoing basis | The Scheme offers following facilities on an ongoing basis: i) Systematic Investment Plan For investors, the fund offers a Systematic Investment Plan (SIP) at all our Official point of acceptance of SBI MF’s locations. Under this Facility, an investor can invest a fixed amount per frequency. This facility will help the investor to average out their cost of investment over a period of six months or one year and thus overcome the short-term fluctuations in the market. The Scheme offers daily, weekly, Monthly, Quarterly, Semi-Annual & Annual Systematic Investment Plan. (ii) Systematic Withdrawal Plan Under SWP, a minimum amount of Rs. 500/- can be withdrawn every month or quarter or weekly or half yearly or on an annual basis by indicating in the application form or by issuing advance instructions to the Registrar at any time. The Scheme offers Day based and Date based SWP. (iii) Systematic Transfer Plan Systematic Transfer Plan is a combination of systematic withdrawal from one scheme and systematic investment into another scheme. Therefore the minimum amount of withdrawals applicable under SWP would be applicable to STP also. Similarly the minimum investments applicable for each scheme under SIP would be applicable to STP. For further details of special products / facilities, kindly refer SAI and section II of the SID.\nXXV. | Weblink | Please refer to our website for the following: TER for last 6 months/ Daily TER: Please refer https://www.sbimf.com/total-expense-ratio-of-mutual- fund-schemes Scheme factsheet: Please refer https://www.sbimf.com/factsheets"
+        },
+        {
+          "chunk_id": "sid:sid---sbi-midcap-fund:0009",
+          "score": 0.7323459386825562,
+          "source_document": "sid---sbi-midcap-fund.pdf",
+          "document_type": "sid",
+          "page_number": "6",
+          "section_heading": "Part I. HIGHLIGHTS/SUMMARY OF THE SCHEME",
+          "text": "[TABLE]\nXXIV | Special product/facility available during the NFO and on ongoing basis | The Scheme offers following facilities on an ongoing basis: i) Systematic Investment Plan For investors, the fund offers a Systematic Investment Plan (SIP) at all our Official point of acceptance of SBI MF’s locations. Under this Facility, an investor can invest a fixed amount per frequency. This facility will help the investor to average out their cost of investment over a period of six months or one year and thus overcome the short-term fluctuations in the market. The Scheme offers daily, weekly, Monthly, Quarterly, Semi-Annual & Annual Systematic Investment Plan. (ii) Systematic Withdrawal Plan Under SWP, a minimum amount of Rs. 500/- can be withdrawn every month or quarter or weekly or half yearly or on an annual basis by indicating in the application form or by issuing advance instructions to the Registrar at any time. The Scheme offers Day based and Date based SWP. (iii) Systematic Transfer Plan Systematic Transfer Plan is a combination of systematic withdrawal from one scheme and systematic investment into another scheme. Therefore the minimum amount of withdrawals applicable under SWP would be applicable to STP also. Similarly the minimum investments applicable for each scheme under SIP would be applicable to STP. For further details of special products / facilities, kindly refer SAI and section II of the SID.\nXXV. | Weblink | Please refer to our website for the following: TER for last 6 months/ Daily TER: Please refer https://www.sbimf.com/total-expense-ratio-of-mutual- fund-schemes Scheme factsheet: Please refer https://www.sbimf.com/factsheets"
+        }
+      ],
+      "error": null,
+      "faithfulness": 0.8571428571428571,
+      "context_precision": 1.0,
+      "context_recall": 0.6,
+      "answer_relevancy": 0.8115168085034706
+    },
+    {
+      "id": "def_03",
+      "category": "definitional",
+      "question": "What is an exit load, and why do mutual funds charge it?",
+      "expected_answer": "An exit load is a fee charged by a mutual fund when an investor redeems units before a specified holding period (commonly 1 year). It is deducted from the redemption proceeds and is meant to discourage short-term trading in and out of the fund, protecting long-term investors from the costs that frequent redemptions impose on the fund.",
+      "no_ground_truth_answer_yet": false,
+      "answer": "An exit load is a fee that an investor must pay when redeeming (selling) units of a mutual fund. The amount can vary and may be changed by the AMC from time to time. When an exit load is levied, the net amount (after GST) is credited to the scheme’s assets, effectively covering the fund’s transaction costs and supporting the scheme’s operations.",
+      "citations": [
+        {
+          "source_document": "sid---sbi-small-cap-fund.pdf",
+          "document_type": "sid",
+          "page_number": "19"
+        },
+        {
+          "source_document": "sid---sbi-focused-fund.pdf",
+          "document_type": "sid",
+          "page_number": "19-28"
+        }
+      ],
+      "retrieved": [
+        {
+          "chunk_id": "sid:sid---sbi-small-cap-fund:0049",
+          "score": 0.8008041977882385,
+          "source_document": "sid---sbi-small-cap-fund.pdf",
+          "document_type": "sid",
+          "page_number": "19",
+          "section_heading": "C. ANNUAL SCHEME RECURRING EXPENSES",
+          "text": "se considered above.\nAny other information/disclosure to be added as per applicable Consolidated checklist of standard\nobservations.\nD.\nLOAD STRUCTURE\nExit Load is an amount which is paid by the investor to redeem the units from the scheme. Load amounts are\nvariable and are subject to change from time to time. For the current applicable structure, please refer to the\nwebsite of the AMC (www.sbimf.com) or may call at (toll free no. 1800 209 3333/1800 425 5425.) or your\ndistributor."
+        },
+        {
+          "chunk_id": "sid:SID - HDFC Small Cap Fund dated November 21, 2025_0:0061",
+          "score": 0.788831889629364,
+          "source_document": "SID - HDFC Small Cap Fund dated November 21, 2025_0.pdf",
+          "document_type": "sid",
+          "page_number": "23-41",
+          "section_heading": "C. LOAD STRUCTURE",
+          "text": "No Entry Load will be charged.\n(i) No Exit Load shall be levied for switching between Plans / Options within the Scheme. However, exit load\nwill be applicable if the units are switched-out / redeemed from the Scheme within the exit load period\nfrom the initial date of purchase.\n(ii) No Exit load will be levied on bonus Units and on units allotted on Re-investment of Income Distribution\ncum Capital Withdrawal.\n(iii) No Exit load will be levied on Units allotted in the Target Scheme under the Transfer of Income Distribution\ncum Capital Withdrawal (IDCW) Plan Facility (TIP Facility).\n(iv) In case of Systematic Transactions such as Systematic Investment Plan (SIP), Flex Systematic\nInvestment Plan (Flex SIP), Systematic Transfer Plan (STP), HDFC Flex Systematic Transfer Plan\n(Flex STP), HDFC Swing Systematic Transfer Plan (Swing STP), HDFC Flexindex Plan (Flexindex)\netc., Exit Load, if any, prevailing on the date of registration / enrolment shall be levied.\n23\nHDFC Small Cap Fund-SID\nThe AMC/ Trustee if it so deems fit in the interest of smooth and efficient functioning of the Mutual Fund"
+        },
+        {
+          "chunk_id": "sid:sid---sbi-focused-fund:0049",
+          "score": 0.7849996089935303,
+          "source_document": "sid---sbi-focused-fund.pdf",
+          "document_type": "sid",
+          "page_number": "19-28",
+          "section_heading": "D. LOAD STRUCTURE",
+          "text": "Please note that no Exit Load shall be levied for switching between Plans within the said Scheme.\nThe AMC reserves the right to introduce a load structure, levy a different load structure or remove the load\nstructure in the scheme at any time after giving notice to that effect to the investors\nThe upfront commission on investment, if any, shall be paid to the ARN Holder directly by the investor, based\non the investor’s assessment of various factors including service rendered by the ARN Holder.\nThe exit load charged, if any, after the commencement of the SEBI (Mutual Funds) (Second Amendment)\nRegulations, 2012, shall be credited to the scheme. GST on exit load shall be paid out of the exit load\nproceeds and exit load net of service tax shall be credited to the scheme.\nFor any change in load structure AMC will issue an addendum and display it on the website/ Official point\nof acceptance of SBI MF.\nAny imposition or enhancement in the load shall be applicable on prospective investments only. At the time\nof changing the load structure, the mutual fund may consider the following measures to avoid complaints\nfrom investors about investment in the schemes without knowing the loads:"
+        },
+        {
+          "chunk_id": "factsheet:Fund Facts - HDFC Flexi Cap Fund_July 26:0014",
+          "score": 0.7829065322875977,
+          "source_document": "Fund Facts - HDFC Flexi Cap Fund_July 26.pdf",
+          "document_type": "factsheet",
+          "page_number": "3",
+          "section_heading": "Top 10 Sectoral Trend (as on 30th June, 2026)",
+          "text": "curity covered under the respective sector/stocks/themes. The Fund may or may not have any present or future positions in these stocks/sectors/themes.\n$$ Exit Load: (i) No Exit Load shall be levied for switching between Plans / Options within the Scheme. However, exit load will be applicable if the units are switched-out / redeemed from the Scheme within the\nexit load period from the initial date of purchase. (ii) No Exit load will be levied on bonus Units and on units allotted on Re-investment of Income Distribution cum Capital Withdrawal. (iii) No Exit load will be levied\non Units allotted in the Target Scheme under the Transfer of Income Distribution cum Capital Withdrawal (IDCW) Plan Facility (TIP Facility). (iv) In case of Systematic Transactions such as Systematic Investment\nPlan (SIP), Flex Systematic Investment Plan (Flex SIP), Systematic Transfer Plan (STP), HDFC Flex Systematic Transfer Plan (Flex STP), HDFC Swing Systematic Transfer Plan (Swing STP), HDFC Flexindex Plan\n(Flexindex) etc., Exit Load, if any, prevailing on the date of registration / enrolment shall be levied.\nMUTUAL FUND INVESTMENTS ARE SUBJECT TO MARKET RISKS, READ ALL SCHEME RELATED DOCUMENTS CAREFULLY."
+        },
+        {
+          "chunk_id": "sid:SID - HDFC Flexi Cap Fund dated November 21, 2025_0:0060",
+          "score": 0.7796748876571655,
+          "source_document": "SID - HDFC Flexi Cap Fund dated November 21, 2025_0.pdf",
+          "document_type": "sid",
+          "page_number": "24-42",
+          "section_heading": "C. LOAD STRUCTURE",
+          "text": "No Entry Load will be charged.\n(i) No Exit Load shall be levied for switching between Plans / Options within the Scheme. However, exit load\nwill be applicable if the units are switched-out / redeemed from the Scheme within the exit load period\nfrom the initial date of purchase.\n(ii) No Exit load will be levied on bonus Units and on units allotted on Re-investment of Income Distribution\ncum Capital Withdrawal.\n(iii) No Exit load will be levied on Units allotted in the Target Scheme under the Transfer of Income Distribution\ncum Capital Withdrawal (IDCW) Plan Facility (TIP Facility).\n(iv) In case of Systematic Transactions such as Systematic Investment Plan (SIP), Flex Systematic\nInvestment Plan (Flex SIP), Systematic Transfer Plan (STP), HDFC Flex Systematic Transfer Plan\n24\nHDFC Flexi Cap Fund-SID\n(Flex STP), HDFC Swing Systematic Transfer Plan (Swing STP), HDFC Flexindex Plan (Flexindex)\netc., Exit Load, if any, prevailing on the date of registration / enrolment shall be levied.\nThe AMC/ Trustee if it so deems fit in the interest of smooth and efficient functioning of the Mutual Fund"
+        }
+      ],
+      "error": null,
+      "faithfulness": 0.6666666666666666,
+      "context_precision": 1.0,
+      "context_recall": 0.4,
+      "answer_relevancy": 0.7924008506232044
+    },
+    {
+      "id": "def_04",
+      "category": "definitional",
+      "question": "What is the expense ratio (TER) of a mutual fund?",
+      "expected_answer": "The expense ratio, or Total Expense Ratio (TER), is the annual percentage of a fund's assets deducted to cover its operating costs — including fund management fees, administrative costs, and distribution expenses. It directly reduces the returns an investor receives; a fund's actual return to the investor is its gross return minus the TER.",
+      "no_ground_truth_answer_yet": false,
+      "answer": "The expense ratio, also called the Total Expense Ratio (TER), is the total annual cost charged to a mutual‑fund scheme expressed as a percentage of its daily net assets.  Under SEBI’s Regulation 52(6) the maximum TER is tiered as follows: \n• On the first Rs 500 crores of daily net assets – 2.25 % p.a.\n• On the next Rs 250 crores – 2.00 % p.a.\n• On the next Rs 1,250 crores – 1.75 % p.a.\n• On the next Rs 3,000 crores – 1.60 % p.a.\n• On the next Rs 5,000 crores – 1.50 % p.a.\n• On the next Rs 40,000 crores – the TER is reduced by 0.05 % for every additional Rs 5,000 crores (or part thereof)\n• On the balance of the assets – 1.05 % p.a.\nThe AMC may estimate that up to 2.25 % of daily net assets will be charged as expenses, but the actual current TER for a specific fund should be checked on the fund’s website.",
+      "citations": [
+        {
+          "source_document": "SID - HDFC Small Cap Fund dated November 21, 2025_0.pdf",
+          "document_type": "sid",
+          "page_number": "19-20"
+        },
+        {
+          "source_document": "SID - HDFC Mid Cap Fund dated November 21, 2025_1.pdf",
+          "document_type": "sid",
+          "page_number": "20-21"
+        },
+        {
+          "source_document": "SID - HDFC Flexi Cap Fund dated November 21, 2025_0.pdf",
+          "document_type": "sid",
+          "page_number": "20-22"
+        }
+      ],
+      "retrieved": [
+        {
+          "chunk_id": "sid:SID - HDFC Small Cap Fund dated November 21, 2025_0:0050",
+          "score": 0.7384419441223145,
+          "source_document": "SID - HDFC Small Cap Fund dated November 21, 2025_0.pdf",
+          "document_type": "sid",
+          "page_number": "19-20",
+          "section_heading": "A. COMPUTATION OF NAV",
+          "text": "ing costs etc. as given in the table below.\nThe AMC has estimated that upto 2.25 % of the daily net assets of the scheme will be charged to the scheme\nas expenses. For the actual current expenses being charged, the investor should refer to the website of the\nmutual fund.\nMaximum Total Expense Ratio under Regulation 52 (6):\nOn the first Rs.500 crores of the daily net assets - 2.25% p.a.\nOn the next Rs.250 crores of the daily net assets - 2.00% p.a.\nOn the next Rs.1,250 crores of the daily net assets - 1.75% p.a.\nOn the next Rs.3,000 crores of the daily net assets - 1.60% p.a.\nOn the next Rs.5,000 crores of the daily net assets - 1.50% p.a.\nOn the next Rs.40,000 crores of the daily net assets - Total expense ratio reduction of 0.05% for every\nincrease of Rs.5,000 crores of daily net assets or part thereof.\nOn balance of the assets - 1.05% p.a.\n20\nHDFC Small Cap Fund-SID"
+        },
+        {
+          "chunk_id": "sid:SID - HDFC Mid Cap Fund dated November 21, 2025_1:0049",
+          "score": 0.7365931272506714,
+          "source_document": "SID - HDFC Mid Cap Fund dated November 21, 2025_1.pdf",
+          "document_type": "sid",
+          "page_number": "20-21",
+          "section_heading": "A. COMPUTATION OF NAV",
+          "text": "ing costs etc. as given in the table below.\nThe AMC has estimated that upto 2.25 % of the daily net assets of the scheme will be charged to the scheme\nas expenses. For the actual current expenses being charged, the investor should refer to the website of the\nmutual fund.\nMaximum Total Expense Ratio under Regulation 52 (6):\nOn the first Rs.500 crores of the daily net assets - 2.25% p.a.\nOn the next Rs.250 crores of the daily net assets - 2.00% p.a.\nOn the next Rs.1,250 crores of the daily net assets - 1.75% p.a.\nOn the next Rs.3,000 crores of the daily net assets - 1.60% p.a.\nOn the next Rs.5,000 crores of the daily net assets - 1.50% p.a.\nOn the next Rs.40,000 crores of the daily net assets - Total expense ratio reduction of 0.05% for every\nincrease of Rs.5,000 crores of daily net assets or part thereof.\nOn balance of the assets - 1.05% p.a.\n21\nHDFC Mid Cap Fund-SID"
+        },
+        {
+          "chunk_id": "sid:SID - HDFC Flexi Cap Fund dated November 21, 2025_0:0050",
+          "score": 0.7324084639549255,
+          "source_document": "SID - HDFC Flexi Cap Fund dated November 21, 2025_0.pdf",
+          "document_type": "sid",
+          "page_number": "20-22",
+          "section_heading": "A. COMPUTATION OF NAV",
+          "text": "ing costs etc. as given in the table below.\nThe AMC has estimated that upto 2.25 % of the daily net assets of the scheme will be charged to the scheme\nas expenses. For the actual current expenses being charged, the investor should refer to the website of the\nmutual fund.\nMaximum Total Expense Ratio under Regulation 52 (6):\nOn the first Rs.500 crores of the daily net assets - 2.25% p.a.\nOn the next Rs.250 crores of the daily net assets - 2.00% p.a.\nOn the next Rs.1,250 crores of the daily net assets - 1.75% p.a.\nOn the next Rs.3,000 crores of the daily net assets - 1.60% p.a.\nOn the next Rs.5,000 crores of the daily net assets - 1.50% p.a.\n21\nHDFC Flexi Cap Fund-SID\nOn the next Rs.40,000 crores of the daily net assets - Total expense ratio reduction of 0.05% for every\nincrease of Rs.5,000 crores of daily net assets or part thereof.\nOn balance of the assets - 1.05% p.a."
+        },
+        {
+          "chunk_id": "sid:sid---sbi-focused-fund:0043",
+          "score": 0.7275526523590088,
+          "source_document": "sid---sbi-focused-fund.pdf",
+          "document_type": "sid",
+          "page_number": "17-18",
+          "section_heading": "C. ANNUAL SCHEME RECURRING EXPENSES",
+          "text": "ense Ratio (TER) as prescribed under regulation 52 of\nthe SEBI (Mutual Funds) Regulations, 1996. Goods & Service tax on brokerage and transaction cost\npaid for execution of trade, if any, shall be within the limit prescribed under regulation 52 of the\nRegulations\n• In terms of Regulation 52 (6A) (b), expenses not exceeding of 0.30 per cent of daily net assets will be\ncharged, if the new inflows from such cities as specified from time to time are at least –\n(i)\n30 percent of gross new inflows in the scheme, or;\n(ii)\n15 percent of the average assets under management (year to date) of the scheme, whichever is\nhigher:\nProvided that if inflows from such cities is less than the higher of sub-clause (i) or sub- clause (ii),\nsuch expenses on daily net assets of the scheme shall be charged on proportionate basis:\nProvided further that expenses charged under this clause shall be utilised for distribution expenses\nincurred for bringing inflows from such cities:\nProvided further that amount incurred as expense on account of inflows from such cities shall be credited\nback to the scheme in case the said inflows are redeemed within a period of one year from the date of\ninvestment."
+        },
+        {
+          "chunk_id": "sid:SID - HDFC Flexi Cap Fund dated November 21, 2025_0:0055",
+          "score": 0.7236084938049316,
+          "source_document": "SID - HDFC Flexi Cap Fund dated November 21, 2025_0.pdf",
+          "document_type": "sid",
+          "page_number": "22-24",
+          "section_heading": "B. ANNUAL SCHEME RECURRING EXPENSES",
+          "text": "se 10.1.12 of Master Circular on Total Expense Ratio (TER) and\nperformance disclosure for Mutual Fund.\n5 Additional Expenses under Regulation 52 (6A):\n(i) Brokerage and transaction cost incurred for the purpose of execution of trade shall be charged to the\nschemes as provided under Regulation 52 (6A) (a) upto 12 bps and 5 bps for cash market transactions\nand derivatives transactions (if permitted under the scheme) respectively. Any payment towards\nbrokerage and transaction costs, over and above the said 12 bps and 5 bps may be charged to the\nscheme within the maximum limit of Total Expense Ratio (TER) as prescribed under Regulation 52.\n(ii)Expenses not exceeding 0.05% p.a. of daily net assets towards Investment Management and Advisory\nFees and the various sub-heads of recurring expenses mentioned under Regulation 52 (2) and (4)\nrespectively of SEBI (MF) Regulations. Provided that such additional expenses shall not be charged\nto the schemes where the exit load is not levied or applicable.\nThe total expenses charged to the Scheme shall not exceed the limits stated in Regulation 52 of the SEBI"
+        }
+      ],
+      "error": null,
+      "faithfulness": 0.9090909090909091,
+      "context_precision": 1.0,
+      "context_recall": 0.25,
+      "answer_relevancy": 0.7698710467894304
+    },
+    {
+      "id": "def_05",
+      "category": "definitional",
+      "question": "What is the difference between direct and regular mutual fund plans?",
+      "expected_answer": "A direct plan is purchased straight from the AMC without a distributor, so it carries no distribution commission and has a lower expense ratio, meaning slightly higher returns over time. A regular plan is purchased through an intermediary (broker/distributor/platform), who earns a commission that is built into a higher expense ratio.",
+      "no_ground_truth_answer_yet": false,
+      "answer": "A Direct Plan is for investors who subscribe to a scheme directly with the mutual fund or through a Registered Investment Advisor (RIA) and does not involve a distributor. It offers the same investment objective, asset‑allocation pattern, strategy, risk factors and facilities as the Regular Plan but carries a lower expense ratio because brokerage/commission to distributors is not paid. Both plans hold a common portfolio, but the Direct Plan typically has a different (usually lower) NAV due to the lower expenses. A Regular Plan is for investors who route their investment through a distributor; the distributor’s commission and distribution expenses are included in the expense ratio, resulting in a higher expense ratio. Both plans share the same portfolio and investment features, but the Regular Plan may have a higher NAV reflecting the higher costs.",
+      "citations": [
+        {
+          "source_document": "sid---sbi-small-cap-fund.pdf",
+          "document_type": "sid",
+          "page_number": "43"
+        },
+        {
+          "source_document": "sid---sbi-midcap-fund.pdf",
+          "document_type": "sid",
+          "page_number": "17-18"
+        }
+      ],
+      "retrieved": [
+        {
+          "chunk_id": "sid:sid---sbi-small-cap-fund:0107",
+          "score": 0.7894636392593384,
+          "source_document": "sid---sbi-small-cap-fund.pdf",
+          "document_type": "sid",
+          "page_number": "43",
+          "section_heading": "e. Transfer of investments from one scheme to another scheme, including this scheme, under the Mutual Fund",
+          "text": "[TABLE]\n | Direct Plan: Direct Plan is only for investors who purchase /subscribe Units in a Scheme directly with the Mutual Fund or through Registered Investment Advisor (RIA)and is not available for investors who route their investments through a Distributor. All the features of the Direct Plan under Scheme like the investment objective, asset allocation pattern, investment strategy, risk factors, facilities offered, load structure etc. will be the same except for a lower expense ratio as detailed in Section IV – Fees and Expenses – B. – Annual Recurring Expenses. Brokerage/Commission paid to distributors will not be paid / charged under the Direct Plan. Both the plans shall have a common portfolio. Eligible investors: All categories of investors as permitted under the Scheme Information Document of the Scheme are eligible to subscribe under Direct Plan. Modes for applying: Investments under Direct Plan can be made through various modes offered by the Mutual Fund for investing directly with the Mutual Fund. How to apply: Investors desirous of subscribing under Direct Plan of a Scheme will have to ensure to indicate “Direct Plan” against the Scheme name in the application form. Investors should also indicate “Direct” in the ARN column of the application form. Regular Plan: This Plan is for investors who wish to route their investment through any distributor. In case of Regular and Direct plan the default plan under following scenarios will be: Broker Sce Code Plan Default Plan nari mentioned mentioned by to be o by the the investor captured investor Not Not Direct 1 mentione mentioned Plan d Not 2 Direct Direct Plan mentioned Not 3 Regular Direct Plan mentioned 4 Mentioned Direct Direct Plan Not 5 Direct Mentione Direct Plan d 6 Direct Regular Direct Plan Regular 7 Mentioned Regular Plan | | | \n | Sce nari o | Broker Code mentioned by the investor | Plan mentioned by the investor | Default Plan to be captured\n | 1 | Not mentioned | Not mentione d | Direct Plan\n | 2 | Not mentioned | Direct | Direct Plan\n | 3 | Not mentioned | Regular | Direct Plan\n | 4 | Mentioned | Direct | Direct Plan\n | 5 | Direct | Not Mentione d | Direct Plan\n | 6 | Direct | Regular | Direct Plan\n | 7 | Mentioned | Regular | Regular Plan"
+        },
+        {
+          "chunk_id": "sid:sid---sbi-focused-fund:0105",
+          "score": 0.7675368785858154,
+          "source_document": "sid---sbi-focused-fund.pdf",
+          "document_type": "sid",
+          "page_number": "44",
+          "section_heading": "G. Other Scheme Specific Disclosures",
+          "text": "[TABLE]\n | updated bank account details including cancelled original cheque leaf of the new bank account. - No investments (lumpsum/SIP/ switch in/ STP in etc.) in the scheme would be allowed once the minor attains majority i.e. 18 years of age. | | | \nPlans/Options T | The Scheme would have two plans viz. Regular plan & Direct plan. Direct Plan: Direct Plan is only for investors who purchase /subscribe Units in a Scheme directly with the Mutual Fund or through Registered Investment Advisor (RIA) and is not available for investors who route their investments through a Distributor. All the features of the Direct Plan under Scheme like the investment objective, asset allocation pattern, investment strategy, risk factors, facilities offered, load structure etc. will be the same except for a lower expense ratio as detailed in Section IV – Fees and Expenses – B. – Annual Recurring Expenses. Brokerage/Commission paid to distributors will not be paid / charged under the Direct Plan. Both the plans shall have a common portfolio. Eligible investors: All categories of investors as permitted under the Scheme Information Document of the Scheme are eligible to subscribe under Direct Plan. Modes for applying: Investments under Direct Plan can be made through various modes offered by the Mutual Fund for investing directly with the Mutual Fund. How to apply: Investors desirous of subscribing under Direct Plan of a Scheme will have to ensure to indicate “Direct Plan” against the Scheme name in the application form. Investors should also indicate “Direct” in the ARN column of the application form. Regular Plan: This Plan is for investors who wish to route their investment hrough any distributor. In case of Regular and Direct plan the default plan under following scenarios will be: Scenar Broker Plan Default Plan to be io Code mentioned captured mentioned by the by the investor investor 1 Not Not Direct Plan mentioned mentioned | | | \n | Scenar io | Broker Code mentioned by the investor | Plan mentioned by the investor | Default Plan to be captured\n | 1 | Not mentioned | Not mentioned | Direct Plan"
+        },
+        {
+          "chunk_id": "sid:sid---sbi-focused-fund:0106",
+          "score": 0.7499659061431885,
+          "source_document": "sid---sbi-focused-fund.pdf",
+          "document_type": "sid",
+          "page_number": "45",
+          "section_heading": "G. Other Scheme Specific Disclosures",
+          "text": "[TABLE]\n | 2 | Not mentioned | Direct | Direct Plan\n | 3 | Not mentioned | Regular | Direct Plan\n | 4 | Mentioned | Direct | Direct Plan\n | 5 | Direct | Not Mentioned | Direct Plan\n | 6 | Direct | Regular | Direct Plan\n | 7 | Mentioned | Regular | Regular Plan\n | 8 | Mentioned | Not Mentioned | Regular Plan\nSpecial Products | i) Systematic Investment Plan For investors, the fund offers a Systematic Investment Plan (SIP) at all our Official point of acceptance of SBI MF’s locations. Under this Facility, an investor can invest a fixed amount per frequency. This facility will help the investor to average Payout their cost of Reinvestment over a period of six months or one year and thus overcome the short-term fluctuations in the market. The Scheme offers daily, weekly, Monthly, Quarterly, Semi- Annual & Annual Systematic Investment Plan. Terms and conditions for Daily SIP are as follows: | | |"
+        },
+        {
+          "chunk_id": "sid:sid---sbi-midcap-fund:0042",
+          "score": 0.7363880276679993,
+          "source_document": "sid---sbi-midcap-fund.pdf",
+          "document_type": "sid",
+          "page_number": "17-18",
+          "section_heading": "C. ANNUAL SCHEME RECURRING EXPENSES",
+          "text": "may charge the investment\nand advisory fees within the limits of total expenses prescribed under Regulation 52 of the SEBI\n(Mutual Funds) Regulation.\nDirect Plan shall have a lower expense ratio excluding distribution expenses, commission, etc as\ncompared to Regular Plan and no commission for distribution of Units will be paid/ charged under\nDirect Plan. Both the plans viz. Regular and Direct plan shall have common portfolio. However,\nRegular Plan and Direct Plan shall have different NAVs.\nThese estimates have been made in good faith as per the information available to the Investment\nManager based on past experience and are subject to change inter-se. Types of expenses\ncharged shall be as per the SEBI (MF) Regulations.\nThe aforesaid expenses are fungible within the overall maximum limit prescribed under SEBI\n(Mutual Funds) Regulations. This means that mutual fund can charge expenses within overall\nlimits, without any internal cap on the aforesaid expenses head. Types of expenses charged shall\nbe as per the SEBI (Mutual Funds) Regulations, 1996.\nFor investor education and awareness initiative, the AMC or the Schemes of the Fund will annually"
+        },
+        {
+          "chunk_id": "sid:sid---sbi-midcap-fund:0124",
+          "score": 0.7360490560531616,
+          "source_document": "sid---sbi-midcap-fund.pdf",
+          "document_type": "sid",
+          "page_number": "51",
+          "section_heading": "F. Floors and ceiling within a range of 5% of the intended allocation against each sub class",
+          "text": "[TABLE]\n | application form along with prescribed documents to change the status of the account from ‘minor’ to ‘major’. - All transactions / standing instructions / systematic transactions etc. will be suspended i.e. the Folio will be frozen for operation by the guardian from the date of beneficiary child completing 18 years of age, till the status of the minor is changed to major. Upon the minor attaining the status of major, the minor in whose name the investment was made, shall be required to provide all the KYC details, updated bank account details including cancelled original cheque leaf of the new bank account. - No investments (lumpsum/SIP/ switch in/ STP in etc.) in the scheme would be allowed once the minor attains majority i.e. 18 years of age.\nPlans/Options offered | Direct Plan: Direct Plan is only for investors who purchase /subscribe Units in a Scheme directly with the Mutual Fund or through Registered Investment Advisor (RIA) and is not available for investors who route their investments through a Distributor. All the features of the Direct Plan under Scheme like the investment objective, asset allocation pattern, investment strategy, risk factors, facilities offered, load structure etc. will be the same except for a lower expense ratio as detailed in Section IV – Fees and Expenses – B. – Annual Recurring Expenses. Brokerage/Commission paid to distributors will not be paid / charged under the Direct Plan. Both the plans shall have a common portfolio. Eligible investors: All categories of investors as permitted under the Scheme Information Document of the Scheme are eligible to subscribe under Direct Plan. Modes for applying: Investments under Direct Plan can be made through various modes offered by the Mutual Fund for investing directly with the Mutual Fund How to apply: Investors desirous of subscribing under Direct Plan of a Scheme will have to ensure to indicate “Direct Plan” against the Scheme name in the application form. Investors should also indicate “Direct” in the ARN column of the application form. Regular Plan This Plan is for investors who wish to route their investment through any distributor. In case of Regular and Direct plan the default plan under following scenarios will be:"
+        }
+      ],
+      "error": null,
+      "faithfulness": 0.7777777777777778,
+      "context_precision": 0.8875,
+      "context_recall": 0.8571428571428571,
+      "answer_relevancy": 0.8987760678560811
+    },
+    {
+      "id": "def_06",
+      "category": "definitional",
+      "question": "What are LTCG and STCG on equity mutual funds, and what are the current tax rates?",
+      "expected_answer": "LTCG (Long-Term Capital Gains) applies to equity-oriented mutual fund units held for more than 12 months and is taxed at 12.5% on gains exceeding ₹1.25 lakh in a financial year, with no indexation benefit. STCG (Short-Term Capital Gains) applies to units held for 12 months or less and is taxed at a flat 20%. These rates apply for FY 2025-26 and FY 2026-27 under Section 112A (LTCG) and Section 111A (STCG) of the Income Tax Act; Budget 2026 made no changes to them. Note: tax rules change with government budgets — this answer should be re-verified against current SEBI/tax-authority guidance at the time you actually build and demo this, not assumed permanent.",
+      "no_ground_truth_answer_yet": false,
+      "answer": "The retrieved SID documents discuss that tax on distributed income for equity‑oriented mutual funds was abolished from April 1 2020 and that income from mutual‑fund units is taxed in the hands of unit holders at their applicable rates, with surcharge and a 4% health and education cess on the aggregate tax. However, they do not provide specific definitions of Long‑Term Capital Gains (LTCG) and Short‑Term Capital Gains (STCG) for equity mutual funds, nor do they list the current tax rates applicable to those gains.",
+      "citations": [],
+      "retrieved": [
+        {
+          "chunk_id": "sid:SID - HDFC Small Cap Fund dated November 21, 2025_0:0185",
+          "score": 0.7292432188987732,
+          "source_document": "SID - HDFC Small Cap Fund dated November 21, 2025_0.pdf",
+          "document_type": "sid",
+          "page_number": "69-70",
+          "section_heading": "E. TAXATION",
+          "text": "$ Equity oriented fund means:\na) a fund in which minimum 65% of total proceeds is invested in listed equity shares of domestic companies\nor\nb) in a case where the fund invests in the units of another listed fund:\n•\nminimum 90% of total proceeds is invested in the units of such other fund; and\n•\nsuch other fund also invests minimum 90% of total proceeds in listed equity shares of domestic\ncompanies.\n*The levy of tax on distributed income payable by Mutual Funds has been abolished w.e.f. April 1, 2020, and\ninstead tax on income from mutual fund units in the hands of the unit holders at their applicable rates has\nbeen adopted.\n1Tax rate to be increased by applicable surcharge and health and education cess at 4% on aggregate of base\ntax and surcharge.\n2Subject to conditions as per the provisions of the Income-tax Act, 1961.\n^^ The information set out is neither a complete disclosure of every material fact of the Income-tax\nAct, 1961 nor does it constitute tax or legal advice. Investors should be aware that the fiscal rules/\ntax laws may change and there can be no guarantee that the current tax position may continue"
+        },
+        {
+          "chunk_id": "sid:SID - HDFC Mid Cap Fund dated November 21, 2025_1:0183",
+          "score": 0.7279809713363647,
+          "source_document": "SID - HDFC Mid Cap Fund dated November 21, 2025_1.pdf",
+          "document_type": "sid",
+          "page_number": "69-70",
+          "section_heading": "E. TAXATION",
+          "text": "$ Equity oriented fund means:\na) a fund in which minimum 65% of total proceeds is invested in listed equity shares of domestic\ncompanies or\nb) in a case where the fund invests in the units of another listed fund:\n•\nminimum 90% of total proceeds is invested in the units of such other fund; and\n•\nsuch other fund also invests minimum 90% of total proceeds in listed equity shares of domestic\ncompanies.\n*The levy of tax on distributed income payable by Mutual Funds has been abolished w.e.f. April 1, 2020,\nand instead tax on income from mutual fund units in the hands of the unit holders at their applicable rates\nhas been adopted.\n1Tax rate to be increased by applicable surcharge and health and education cess at 4% on aggregate of\nbase tax and surcharge.\n2Subject to conditions as per the provisions of the Income-tax Act, 1961.\n69\nHDFC Mid Cap Fund-SID\n^^ The information set out is neither a complete disclosure of every material fact of the Income-\ntax Act, 1961 nor does it constitute tax or legal advice. Investors should be aware that the fiscal\nrules/ tax laws may change and there can be no guarantee that the current tax position may"
+        },
+        {
+          "chunk_id": "sid:SID - HDFC Flexi Cap Fund dated November 21, 2025_0:0185",
+          "score": 0.7269045114517212,
+          "source_document": "SID - HDFC Flexi Cap Fund dated November 21, 2025_0.pdf",
+          "document_type": "sid",
+          "page_number": "70-71",
+          "section_heading": "E. TAXATION",
+          "text": "$ Equity oriented fund means:\na) a fund in which minimum 65% of total proceeds is invested in listed equity shares of domestic companies or\nb) in a case where the fund invests in the units of another listed fund:\n•\nminimum 90% of total proceeds is invested in the units of such other fund; and\n•\nsuch other fund also invests minimum 90% of total proceeds in listed equity shares of domestic companies.\n*The levy of tax on distributed income payable by Mutual Funds has been abolished w.e.f. April 1, 2020, and instead\ntax on income from mutual fund units in the hands of the unit holders at their applicable rates has been adopted.\n1Tax rate to be increased by applicable surcharge and health and education cess at 4% on aggregate of base tax\nand surcharge.\n2Subject to conditions as per the provisions of the Income-tax Act, 1961.\n70\nHDFC Flexi Cap Fund-SID\n^^ The information set out is neither a complete disclosure of every material fact of the Income-tax\nAct, 1961 nor does it constitute tax or legal advice. Investors should be aware that the fiscal rules/\ntax laws may change and there can be no guarantee that the current tax position may continue"
+        },
+        {
+          "chunk_id": "sid:SID - HDFC Small Cap Fund dated November 21, 2025_0:0182",
+          "score": 0.7105661034584045,
+          "source_document": "SID - HDFC Small Cap Fund dated November 21, 2025_0.pdf",
+          "document_type": "sid",
+          "page_number": "68",
+          "section_heading": "E. TAXATION",
+          "text": "For details on taxation please refer to the clause on Taxation in the SAI apart from the following:\nEquity oriented Funds$\nTax implications on distributed income by Mutual Funds^^:"
+        },
+        {
+          "chunk_id": "sid:SID - HDFC Mid Cap Fund dated November 21, 2025_1:0181",
+          "score": 0.6730643510818481,
+          "source_document": "SID - HDFC Mid Cap Fund dated November 21, 2025_1.pdf",
+          "document_type": "sid",
+          "page_number": "68-69",
+          "section_heading": "C. TRANSACTION CHARGES AND STAMP DUTY",
+          "text": "68\nHDFC Mid Cap Fund-SID\nPlease refer to Statement of Additional Information (SAI)\nFor details on taxation please refer to the clause on Taxation in the SAI apart from the following:\nEquity oriented Funds$\nTax implications on distributed income by Mutual Funds^^:"
+        }
+      ],
+      "error": null,
+      "faithfulness": 0.5,
+      "context_precision": 0.0,
+      "context_recall": 0.0,
+      "answer_relevancy": 0.8211164853982332
+    },
+    {
+      "id": "def_07",
+      "category": "definitional",
+      "question": "What is NAV (Net Asset Value) in the context of mutual funds?",
+      "expected_answer": "NAV is the per-unit market value of a mutual fund scheme, calculated as (total value of the fund's assets minus liabilities) divided by the number of outstanding units. It is calculated and published daily and represents the price at which units are bought or sold.",
+      "no_ground_truth_answer_yet": false,
+      "answer": "NAV (Net Asset Value) is the per‑unit value of a mutual fund scheme on a particular day. It is calculated as: (Market or Fair Value of the scheme’s investments + Current Assets – Current Liabilities and Provision) divided by the number of units outstanding on the valuation date, and is rounded off to four decimal places. The NAV is computed and declared at the close of every business day, allowing investors to determine the value of their investment by multiplying the NAV with their unit balance.",
+      "citations": [
+        {
+          "source_document": "sid---sbi-midcap-fund.pdf",
+          "document_type": "sid",
+          "page_number": "14-17"
+        },
+        {
+          "source_document": "SID - HDFC Flexi Cap Fund dated November 21, 2025_0.pdf",
+          "document_type": "sid",
+          "page_number": "69"
+        }
+      ],
+      "retrieved": [
+        {
+          "chunk_id": "sid:sid---sbi-midcap-fund:0034",
+          "score": 0.7876005172729492,
+          "source_document": "sid---sbi-midcap-fund.pdf",
+          "document_type": "sid",
+          "page_number": "14-17",
+          "section_heading": "H. ADDITIONAL SCHEME RELATED DISCLOSURES",
+          "text": "art III- OTHER DETAILS\nA.\nCOMPUTATION OF NAV\nNAV of the Scheme shall be computed and declared on every business day. The NAV under the Scheme would be\nrounded off to four decimals as follows or such other formula as may be prescribed by SEBI from time to time:\nMarket or Fair Value of Scheme’s investments + Current Assets - Current Liabilities and Provision\nNAV = ---------------------------------------------------------------------------------------------------------\nNo of Units outstanding under Scheme on the Valuation Date\nNAV will be disclosed under SEBI (Mutual Funds) Regulations, 1996. NAV can also be viewed on www.sbimf.com\nand www.amfiindia.com.\nThe AMC shall update the NAVs on the website of Association of Mutual Funds in India - AMFI (www.amfiindia.com)\nand on Fund website www.sbimf.com by 11.00 p.m. on daily basis. In case of any delay, the reasons for such delay\nwould be explained to AMFI and SEBI by the next day. If the NAVs are not available before commencement of\nbusiness hours on the following day due to any reason, the Fund shall issue a press release providing reasons and\nexplaining when the Fund would be able to publish the NAVs."
+        },
+        {
+          "chunk_id": "sid:SID - HDFC Flexi Cap Fund dated November 21, 2025_0:0181",
+          "score": 0.7808765172958374,
+          "source_document": "SID - HDFC Flexi Cap Fund dated November 21, 2025_0.pdf",
+          "document_type": "sid",
+          "page_number": "69",
+          "section_heading": "B. TRANSPARENCY/NAV DISCLOSURE",
+          "text": "[TABLE]\nNet Asset Value This is the value per unit of the scheme on a particular day. You can ascertain the value of your investments by multiplying the NAV with your unit balance. | The AMC will calculate and disclose NAVs at the close of every Business Day. As required by SEBI, the NAVs shall be disclosed in the following manner: i) Displayed on the website of the Mutual Fund (www.hdfcfund.com) ii) Displayed on the website of Association of Mutual Funds in India (AMFI) (www.amfiindia.com). iii) Any other manner as may be specified by SEBI from time to time. AMC shall update the NAVs on the website of the Fund and AMFI by 11.00 p.m. every Business day. In case of any delay in uploading on AMFI website, the reasons for such delay would be explained to AMFI and SEBI in writing. If the NAVs are not available before commencement of business hours on the following day due to any reason, Mutual Fund shall issue a press release providing reasons and explaining when the Mutual Fund would be able to publish the NAVs. Mutual Fund / AMC will provide facility of sending latest available NAVs to unitholders through SMS, upon receiving a specific request in this regard."
+        },
+        {
+          "chunk_id": "sid:SID - HDFC Mid Cap Fund dated November 21, 2025_1:0179",
+          "score": 0.7808765172958374,
+          "source_document": "SID - HDFC Mid Cap Fund dated November 21, 2025_1.pdf",
+          "document_type": "sid",
+          "page_number": "68",
+          "section_heading": "B. TRANSPARENCY/NAV DISCLOSURE",
+          "text": "[TABLE]\nNet Asset Value This is the value per unit of the scheme on a particular day. You can ascertain the value of your investments by multiplying the NAV with your unit balance. | The AMC will calculate and disclose NAVs at the close of every Business Day. As required by SEBI, the NAVs shall be disclosed in the following manner: i) Displayed on the website of the Mutual Fund (www.hdfcfund.com) ii) Displayed on the website of Association of Mutual Funds in India (AMFI) (www.amfiindia.com). iii) Any other manner as may be specified by SEBI from time to time. AMC shall update the NAVs on the website of the Fund and AMFI by 11.00 p.m. every Business day. In case of any delay in uploading on AMFI website, the reasons for such delay would be explained to AMFI and SEBI in writing. If the NAVs are not available before commencement of business hours on the following day due to any reason, Mutual Fund shall issue a press release providing reasons and explaining when the Mutual Fund would be able to publish the NAVs. Mutual Fund / AMC will provide facility of sending latest available NAVs to unitholders through SMS, upon receiving a specific request in this regard."
+        },
+        {
+          "chunk_id": "sid:SID - HDFC Small Cap Fund dated November 21, 2025_0:0179",
+          "score": 0.7808765172958374,
+          "source_document": "SID - HDFC Small Cap Fund dated November 21, 2025_0.pdf",
+          "document_type": "sid",
+          "page_number": "67",
+          "section_heading": "B. TRANSPARENCY/NAV DISCLOSURE",
+          "text": "[TABLE]\nNet Asset Value This is the value per unit of the scheme on a particular day. You can ascertain the value of your investments by multiplying the NAV with your unit balance. | The AMC will calculate and disclose NAVs at the close of every Business Day. As required by SEBI, the NAVs shall be disclosed in the following manner: i) Displayed on the website of the Mutual Fund (www.hdfcfund.com) ii) Displayed on the website of Association of Mutual Funds in India (AMFI) (www.amfiindia.com). iii) Any other manner as may be specified by SEBI from time to time. AMC shall update the NAVs on the website of the Fund and AMFI by 11.00 p.m. every Business day. In case of any delay in uploading on AMFI website, the reasons for such delay would be explained to AMFI and SEBI in writing. If the NAVs are not available before commencement of business hours on the following day due to any reason, Mutual Fund shall issue a press release providing reasons and explaining when the Mutual Fund would be able to publish the NAVs. Mutual Fund / AMC will provide facility of sending latest available NAVs to unitholders through SMS, upon receiving a specific request in this regard."
+        },
+        {
+          "chunk_id": "sid:sid---sbi-small-cap-fund:0032",
+          "score": 0.7792041301727295,
+          "source_document": "sid---sbi-small-cap-fund.pdf",
+          "document_type": "sid",
+          "page_number": "14-16",
+          "section_heading": "iv. Portfolio Turnover Ratio as on September 30, 2025: 1.02",
+          "text": "estment in the scheme.\"\nPart III- OTHER DETAILS\nNAV of the Scheme shall be computed and declared on every business day. The NAV under the Scheme would\nbe rounded off to 4 decimals and Units will be allotted upto three decimal places as follows or such other formula\nas may be prescribed by SEBI from time to time:\nMarket or Fair Value of Scheme’s investments + Current Assets - Current Liabilities and Provision\nNAV = -------------------------------------------------------------------------------------------------------------------------------\nNo of Units outstanding under Scheme on the Valuation Date\nNAV will be disclosed under SEBI (Mutual Funds) Regulations, 1996. NAV can also be viewed on\nwww.sbimf.com and www.amfiindia.com.\nThe AMC shall update the NAVs on the website of Association of Mutual Funds in India - AMFI\n(www.amfiindia.com) by 11.00 p.m. on the same business day. In case of any delay, the reasons for such delay\nwould be explained to AMFI and SEBI by the next day. If the NAVs are not available before commencement of\nbusiness hours on the following day due to any reason, the Fund shall issue a press release providing reasons"
+        }
+      ],
+      "error": null,
+      "faithfulness": 1.0,
+      "context_precision": null,
+      "context_recall": null,
+      "answer_relevancy": null
+    },
+    {
+      "id": "def_08",
+      "category": "definitional",
+      "question": "What is an index fund, and how does it differ from an actively managed fund?",
+      "expected_answer": "An index fund passively replicates the composition and performance of a specific market index (e.g. Nifty 50), buying the same stocks in the same proportions rather than having a fund manager pick stocks. This typically means lower expense ratios and returns that track the index rather than trying to beat it, unlike an actively managed fund where a manager makes discretionary calls aiming to outperform the benchmark.",
+      "no_ground_truth_answer_yet": false,
+      "answer": "The language-model service is rate-limited right now. Please retry shortly.",
+      "citations": [],
+      "retrieved": [
+        {
+          "chunk_id": "sid:sid---sbi-small-cap-fund:0025",
+          "score": 0.7035030126571655,
+          "source_document": "sid---sbi-small-cap-fund.pdf",
+          "document_type": "sid",
+          "page_number": "12",
+          "section_heading": "A. HOW WILL THE SCHEME ALLOCATE ITS ASSETS?",
+          "text": "F.\nHOW IS THE SCHEME DIFFERENT FROM EXISTING SCHEMES OF THE MUTUAL FUND?\nThe investment objective of the Scheme is to provide investors with opportunities for long-term growth in capital\nalong with the liquidity of an open-ended scheme by investing predominantly in a well diversified basket of equity\nstocks of small cap companies.\nThere can be no assurance that the investment objective of the scheme will be realized"
+        },
+        {
+          "chunk_id": "sid:sid---sbi-small-cap-fund:0093",
+          "score": 0.683285117149353,
+          "source_document": "sid---sbi-small-cap-fund.pdf",
+          "document_type": "sid",
+          "page_number": "29-33",
+          "section_heading": "IV. Real Estate Investment Trust (REITs) & Infrastructure Investment Trust (InvIT)",
+          "text": "–\n-\nmore than 10% of its NAV in the units of REIT and InvITs; and\n-\nmore than 5% of its NAV in the units of REIT and InvITs issued by a single issuer.\nApart from the investment restrictions prescribed under SEBI (MF) Regulations, the fund follows internal\nnorms vis-à-vis exposure to a particular scrip or sector. These norms are reviewed on a periodic basis and\nmonitored regularly.\nC.\nFundamental Attributes\nFollowing are the Fundamental Attributes of the scheme, in terms of Regulation 18 (15A) of the SEBI (MF)\nRegulations:\n(i) Type of a scheme:\nAn open-ended Equity Scheme predominantly investing in small cap stocks\n(ii) Investment Objective: To provide investors with opportunities for long-term growth in capital along with the\nliquidity of an open-ended scheme by investing predominantly in a well diversified basket of equity stocks of small\ncap companies.\nThere can be no assurance that the investment objective of the scheme will be realized\nInvestment pattern - The indicative portfolio break-up with minimum and maximum asset allocation, while\nretaining the option to alter the asset allocation for a short term period on defensive considerations while retaining"
+        },
+        {
+          "chunk_id": "sid:sid---sbi-focused-fund:0019",
+          "score": 0.6787114143371582,
+          "source_document": "sid---sbi-focused-fund.pdf",
+          "document_type": "sid",
+          "page_number": "9-11",
+          "section_heading": "A. HOW WILL THE SCHEME ALLOCATE ITS ASSETS?",
+          "text": "D/IMD-PoD-\n1/P/CIR/149 dated November 04, 2024.\nAny other instruments / securities, which in the opinion of the fund manager would suit the investment\nobjective/asset allocation of the scheme subject to compliance with extant Regulations. The Scheme may\ninvest in other Schemes managed by the AMC or in the Schemes of any other Mutual Fund(s), provided\nsuch investment is in conformity to the investment objectives of the Scheme and in terms of the prevailing\nRegulations.\n(Detailed definition and applicable regulations/guidelines for each instrument , please refer Section II)\nThe scheme will predominantly be actively managed to achieve its investment objective.The fund will follow\na bottom-up approach to stock-picking and invest in companies across market capitalization and sectors. The\nfund will take high conviction bets and the total number of securities would be equal to or under 30.\nThe scheme will predominantly be actively managed to achieve its investment objective.\nFor details pertaining to Risk Controls Strategies refer section II of the Scheme Information Document.\nDerivative products are leveraged instruments and can provide disproportionate gains as well as"
+        },
+        {
+          "chunk_id": "sid:sid---sbi-focused-fund:0106",
+          "score": 0.6755490303039551,
+          "source_document": "sid---sbi-focused-fund.pdf",
+          "document_type": "sid",
+          "page_number": "45",
+          "section_heading": "G. Other Scheme Specific Disclosures",
+          "text": "[TABLE]\n | 2 | Not mentioned | Direct | Direct Plan\n | 3 | Not mentioned | Regular | Direct Plan\n | 4 | Mentioned | Direct | Direct Plan\n | 5 | Direct | Not Mentioned | Direct Plan\n | 6 | Direct | Regular | Direct Plan\n | 7 | Mentioned | Regular | Regular Plan\n | 8 | Mentioned | Not Mentioned | Regular Plan\nSpecial Products | i) Systematic Investment Plan For investors, the fund offers a Systematic Investment Plan (SIP) at all our Official point of acceptance of SBI MF’s locations. Under this Facility, an investor can invest a fixed amount per frequency. This facility will help the investor to average Payout their cost of Reinvestment over a period of six months or one year and thus overcome the short-term fluctuations in the market. The Scheme offers daily, weekly, Monthly, Quarterly, Semi- Annual & Annual Systematic Investment Plan. Terms and conditions for Daily SIP are as follows: | | |"
+        },
+        {
+          "chunk_id": "sid:sid---sbi-small-cap-fund:0023",
+          "score": 0.6691465973854065,
+          "source_document": "sid---sbi-small-cap-fund.pdf",
+          "document_type": "sid",
+          "page_number": "8-11",
+          "section_heading": "A. HOW WILL THE SCHEME ALLOCATE ITS ASSETS?",
+          "text": "me to time. These trading opportunities may\nbe due to trading opportunities in equities, changes in interest rate policy by the Reserve Bank of India,\nshifts in the yield curve, credit rating changes or any other factors where in the opinion of the fund manager\nthere is an opportunity to enhance the total return of the portfolio. It will be the endeavour of the fund\nmanager to keep portfolio turnover rates as low as possible.\nD.\nHOW WILL THE SCHEME BENCHMARK ITS PERFORMANCE?\nThe scheme would be benchmarked against BSE 250 Small Cap Index TRI.\nThe composition of the aforesaid benchmark is such that it is most suited for comparing performance of\nthe scheme. The Trustee reserve the right to change the benchmark if due to a change in market\nconditions, a different index /indices appears to provide a more appropriate basis for comparison of fund\nperformance.\nE.\nWHO MANAGES THE SCHEME?"
+        }
+      ],
+      "error": "The language-model service is rate-limited right now. Please retry shortly.",
+      "faithfulness": null,
+      "context_precision": null,
+      "context_recall": null,
+      "answer_relevancy": null
+    },
+    {
+      "id": "def_09",
+      "category": "definitional",
+      "question": "What does 'AUM' (Assets Under Management) mean for a mutual fund scheme?",
+      "expected_answer": "AUM is the total market value of all the investments (assets) that a mutual fund scheme currently manages on behalf of its investors. It's typically reported monthly and can be used as one signal of a fund's size and popularity, though it is not itself a measure of performance.",
+      "no_ground_truth_answer_yet": false,
+      "answer": "The language-model service is rate-limited right now. Please retry shortly.",
+      "citations": [],
+      "retrieved": [
+        {
+          "chunk_id": "sid:SID - HDFC Flexi Cap Fund dated November 21, 2025_0:0160",
+          "score": 0.7401952743530273,
+          "source_document": "SID - HDFC Flexi Cap Fund dated November 21, 2025_0.pdf",
+          "document_type": "sid",
+          "page_number": "51-56",
+          "section_heading": "ii. The correlation for past 90 days between the part of the portfolio (excluding the hedged",
+          "text": "mes under the\nsame AMC or in schemes under the management of any other asset management shall not exceed 5%\nof the net asset value of the Mutual Fund.\nProvided that the Scheme shall not invest in any fund of funds scheme.\n• Pending deployment of funds of the Scheme in securities in terms of the investment objectives of the\nScheme, the Fund may park the funds of the Scheme in short term deposits of scheduled commercial\nbanks subject to the following guidelines as specified by clause 12.16 of Master Circular, as amended\nfrom time to time.\n● “Short Term” for parking of funds shall be treated as a period not exceeding 91 days.\n● Short Term deposits shall be held in the name of the Scheme.\n● The Scheme(s) shall not park more than 15% of the net assets in short term deposit(s) of all the\nscheduled commercial banks put together.\n● However, this limit can be raised upto 20% of the net assets with prior approval of the Board of\nTrustees.\n● Parking of funds in short term deposits of associate and sponsor scheduled commercial banks\ntogether shall not exceed 20% of total deployment by the Mutual Fund in short term deposits."
+        },
+        {
+          "chunk_id": "sid:sid---sbi-focused-fund:0087",
+          "score": 0.7379274964332581,
+          "source_document": "sid---sbi-focused-fund.pdf",
+          "document_type": "sid",
+          "page_number": "28-32",
+          "section_heading": "IV. Real Estate Investment Trust (REITs) & Infrastructure Investment Trust (InvIT)",
+          "text": "ade.\nc) For meeting liquidity requirement in a scheme in case of unanticipated redemption pressure\nd) For Duration/Issuer/Sector/Group rebalancing.\nf.\nThe scheme may invest in another scheme under the same asset management company or any other\nmutual fund without charging any fees, provided that aggregate inter-scheme investment made by all\nschemes under the same management or in schemes under the management of any other asset\nmanagement company shall not exceed 5% of the net asset value of the mutual fund.\ntake delivery of relevant securities and in all cases of sale, deliver the securities:\nProvided that a mutual fund may not engage in short selling of securities.\nProvided further that sale of government security already contracted for purchase shall be permitted in\naccordance with the guidelines issued by the Reserve Bank of India in this regard.\nof the concerned scheme, wherever investments are intended to be of long-term nature.\ni.\nPending deployment of funds of the Scheme, the AMC may invest funds of the Scheme in short-term\ndeposits of scheduled commercial banks, subject to the following conditions as per the paragraph 12.16 of"
+        },
+        {
+          "chunk_id": "sid:SID - HDFC Mid Cap Fund dated November 21, 2025_1:0158",
+          "score": 0.7323224544525146,
+          "source_document": "SID - HDFC Mid Cap Fund dated November 21, 2025_1.pdf",
+          "document_type": "sid",
+          "page_number": "50-55",
+          "section_heading": "ii. The correlation for past 90 days between the part of the portfolio (excluding the hedged",
+          "text": "asset management shall not exceed 5%\nof the net asset value of the Mutual Fund.\nProvided that the Scheme shall not invest in any fund of funds scheme.\n• Pending deployment of funds of the Scheme in securities in terms of the investment objectives of the\nScheme, the Fund may park the funds of the Scheme in short term deposits of scheduled commercial\nbanks subject to the following guidelines as specified by clause 12.16 of Master Circular, as amended\nfrom time to time.\n● “Short Term” for parking of funds shall be treated as a period not exceeding 91 days.\n● Short Term deposits shall be held in the name of the Scheme.\n● The Scheme(s) shall not park more than 15% of the net assets in short term deposit(s) of all the\nscheduled commercial banks put together.\n● However, this limit can be raised upto 20% of the net assets with prior approval of the Board of\nTrustees.\n● Parking of funds in short term deposits of associate and sponsor scheduled commercial banks\ntogether shall not exceed 20% of total deployment by the Mutual Fund in short term deposits.\n● The Scheme shall not park more than 10% of the net assets in short term deposit(s) of any one"
+        },
+        {
+          "chunk_id": "sid:SID - HDFC Small Cap Fund dated November 21, 2025_0:0158",
+          "score": 0.7323224544525146,
+          "source_document": "SID - HDFC Small Cap Fund dated November 21, 2025_0.pdf",
+          "document_type": "sid",
+          "page_number": "49-54",
+          "section_heading": "ii. The correlation for past 90 days between the part of the portfolio (excluding the hedged",
+          "text": "asset management shall not exceed 5%\nof the net asset value of the Mutual Fund.\nProvided that the Scheme shall not invest in any fund of funds scheme.\n• Pending deployment of funds of the Scheme in securities in terms of the investment objectives of the\nScheme, the Fund may park the funds of the Scheme in short term deposits of scheduled commercial\nbanks subject to the following guidelines as specified by clause 12.16 of Master Circular, as amended\nfrom time to time.\n● “Short Term” for parking of funds shall be treated as a period not exceeding 91 days.\n● Short Term deposits shall be held in the name of the Scheme.\n● The Scheme(s) shall not park more than 15% of the net assets in short term deposit(s) of all the\nscheduled commercial banks put together.\n● However, this limit can be raised upto 20% of the net assets with prior approval of the Board of\nTrustees.\n● Parking of funds in short term deposits of associate and sponsor scheduled commercial banks\ntogether shall not exceed 20% of total deployment by the Mutual Fund in short term deposits.\n● The Scheme shall not park more than 10% of the net assets in short term deposit(s) of any one"
+        },
+        {
+          "chunk_id": "factsheet:Fund Facts - HDFC Flexi Cap Fund_July 26:0015",
+          "score": 0.7192103862762451,
+          "source_document": "Fund Facts - HDFC Flexi Cap Fund_July 26.pdf",
+          "document_type": "factsheet",
+          "page_number": "3",
+          "section_heading": "Top 10 Sectoral Trend (as on 30th June, 2026)",
+          "text": "he date of registration / enrolment shall be levied.\nMUTUAL FUND INVESTMENTS ARE SUBJECT TO MARKET RISKS, READ ALL SCHEME RELATED DOCUMENTS CAREFULLY.\nMission: To be the wealth creator for every Indian\nVision: To be the most respected asset manager in the world"
+        }
+      ],
+      "error": "The language-model service is rate-limited right now. Please retry shortly.",
+      "faithfulness": null,
+      "context_precision": null,
+      "context_recall": null,
+      "answer_relevancy": null
+    }
+  ]
+}

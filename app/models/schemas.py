@@ -85,3 +85,4 @@ class ResearchRequest(BaseModel):
 class ResearchResponse(BaseModel):
     answer: str
     citations: list[Citation] = Field(default_factory=list)
+    disclaimer: str = ""

@@ -9,7 +9,7 @@ from pathlib import Path
 
 from app.ingestion.chunkers import chunk_document, write_chunks_jsonl
 from app.ingestion.parsers import parse_pdf
-from app.models.schemas import Chunk, ChunkingConfig, DocumentType
+from app.models.schemas import Chunk, ChunkingConfig, DocumentType, ParsedDocument
 
 logger = logging.getLogger(__name__)
 
@@ -56,6 +56,43 @@ def ingest_corpus(
         logger.info("Wrote %s (%d chunks)", out, len(chunks))
 
     return dict(by_type)
+
+
+def parse_all_documents(
+    raw_root: Path | None = None,
+) -> list[tuple[DocumentType, ParsedDocument]]:
+    """Parse every raw PDF once so multiple chunk strategies can reuse the blocks."""
+    raw_root = raw_root or RAW_ROOT
+    parsed: list[tuple[DocumentType, ParsedDocument]] = []
+    for doc_type, folder in TYPE_DIRS.items():
+        directory = raw_root / folder
+        if not directory.exists():
+            continue
+        for pdf in sorted(directory.glob("*.pdf")):
+            logger.info("Parsing %s (%s)", pdf.name, doc_type)
+            doc = parse_pdf(pdf, document_type=doc_type)
+            parsed.append((doc_type, doc))
+    return parsed
+
+
+def ingest_chunk_strategy(
+    parsed_docs: list[tuple[DocumentType, object]],
+    config: ChunkingConfig,
+    processed_root: Path,
+) -> list[Chunk]:
+    """Chunk already-parsed documents and write JSONL under processed_root."""
+    by_type: dict[DocumentType, list[Chunk]] = defaultdict(list)
+    for doc_type, parsed in parsed_docs:
+        chunks = chunk_document(parsed, config=config)
+        by_type[doc_type].extend(chunks)
+    processed_root.mkdir(parents=True, exist_ok=True)
+    all_chunks: list[Chunk] = []
+    for doc_type, chunks in by_type.items():
+        write_chunks_jsonl(chunks, processed_root / f"{doc_type}.jsonl")
+        logger.info("Wrote %s (%d chunks)", processed_root / f"{doc_type}.jsonl", len(chunks))
+        all_chunks.extend(chunks)
+    return all_chunks
+
 
 
 def main() -> None:

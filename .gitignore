@@ -39,9 +39,11 @@ data/processed/*
 !data/processed/.gitkeep
 data/chroma/
 
-# Eval artifacts (keep the folder)
+# Eval artifacts (keep markdown/json reports; ignore huge raw dumps if added later)
 eval/results/*
 !eval/results/.gitkeep
+!eval/results/*.md
+!eval/results/*.json
 
 # OS / editor
 .DS_Store

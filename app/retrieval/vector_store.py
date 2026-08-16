@@ -24,17 +24,17 @@ def _client(path: str | None = None) -> chromadb.PersistentClient:
     return chromadb.PersistentClient(path=str(persist))
 
 
-def get_collection(reset: bool = False):
+def get_collection(reset: bool = False, name: str | None = None):
     settings = get_settings()
     client = _client()
-    name = settings["chroma_collection"]
+    collection_name = name or settings["chroma_collection"]
     if reset:
         try:
-            client.delete_collection(name)
+            client.delete_collection(collection_name)
         except Exception:
             pass
     return client.get_or_create_collection(
-        name=name,
+        name=collection_name,
         metadata={"hnsw:space": "cosine"},
     )
 
@@ -65,11 +65,15 @@ def load_processed_chunks(processed_dir: str | Path | None = None) -> list[Chunk
     return chunks
 
 
-def upsert_chunks(chunks: list[Chunk], reset: bool = False) -> int:
+def upsert_chunks(
+    chunks: list[Chunk],
+    reset: bool = False,
+    collection_name: str | None = None,
+) -> int:
     """Embed and write chunks into Chroma. Returns the number stored."""
     if not chunks:
         return 0
-    collection = get_collection(reset=reset)
+    collection = get_collection(reset=reset, name=collection_name)
     for start in range(0, len(chunks), _BATCH):
         batch = chunks[start : start + _BATCH]
         embeddings = embed_texts([c.text for c in batch])
@@ -89,12 +93,17 @@ def index_processed_corpus(reset: bool = True) -> int:
     return upsert_chunks(chunks, reset=reset)
 
 
-def query(query_text: str, k: int | None = None) -> list[RetrievedChunk]:
+def query(
+    query_text: str,
+    k: int | None = None,
+    collection_name: str | None = None,
+    min_relevance: float | None = None,
+) -> list[RetrievedChunk]:
     """Dense-only similarity search (baseline: no hybrid, no rerank)."""
     settings = get_settings()
     top_k = k if k is not None else settings["top_k"]
-    min_rel = settings["min_relevance"]
-    collection = get_collection(reset=False)
+    min_rel = settings["min_relevance"] if min_relevance is None else min_relevance
+    collection = get_collection(reset=False, name=collection_name)
     if collection.count() == 0:
         return []
     qvec = embed_query(query_text)
