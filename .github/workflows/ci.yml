@@ -1,0 +1,15 @@
+# Stub CI workflow. Real checks (lint, tests, eval gates) land in a later phase.
+name: ci
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  placeholder:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Placeholder
+        run: echo "CI not implemented yet"
