@@ -1,5 +1,7 @@
 fastapi
 uvicorn
-pydantic
+pydantic==2.13.4
 streamlit
 python-dotenv
+pymupdf==1.28.2
+pytest==9.1.1

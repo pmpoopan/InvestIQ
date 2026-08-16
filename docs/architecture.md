@@ -51,30 +51,40 @@ flowchart LR
     G --> GR --> API --> UI --> DEP
 ```
 
+
+
 Planned path: drop PDFs under `data/raw/` → type-specific parsers → chunkers → metadata tagging → embeddings → Chroma vector store → retrieval (baseline dense first; hybrid BM25 + dense with rerank in the ablation study) → generation with citations → guardrails → FastAPI → Streamlit → Render (API) and Streamlit Cloud (UI).
 
 ## Document types and why they are treated differently
 
-| Type | Role in the corpus | Why parsing/chunking differs |
-|------|--------------------|------------------------------|
-| SID | Scheme contract: objectives, investment universe, risks, expenses, load, benchmark | Clause- and section-heavy. Naive page/token splits cut numbered provisions and mix headings with body. Prefer section/clause-aware chunks so a risk or expense answer can cite a stable unit. |
-| Factsheet | Dense periodic snapshot: AUM, allocation, top holdings, ratios, returns | Tabular and layout-dense. Text extraction that ignores tables loses the facts users ask about. Needs table-aware parsing and chunks that keep a table (or labeled row group) intact rather than wrapping lines as prose. |
-| DRHP | Long-form IPO narrative: business, risk factors, industry, offer details | Very long narrative with repeating headings. Fixed small windows fragment arguments; huge windows drown retrieval. Needs heading-aware narrative chunks (risk factor as a unit where possible) so citations stay specific. |
-| SEBI regulation | Clause-numbered legal text | Legal numbering (`regulation 2(1)(a)`, provisos, explanations) is the retrieval key. Flattening to paragraphs breaks cross-references. Chunk on clause/sub-clause boundaries and keep citation-ready identifiers in metadata. |
+
+| Type            | Role in the corpus                                                                 | Why parsing/chunking differs                                                                                                                                                                                                  |
+| --------------- | ---------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| SID             | Scheme contract: objectives, investment universe, risks, expenses, load, benchmark | Clause- and section-heavy. Naive page/token splits cut numbered provisions and mix headings with body. Prefer section/clause-aware chunks so a risk or expense answer can cite a stable unit.                                 |
+| Factsheet       | Dense periodic snapshot: AUM, allocation, top holdings, ratios, returns            | Tabular and layout-dense. Text extraction that ignores tables loses the facts users ask about. Needs table-aware parsing and chunks that keep a table (or labeled row group) intact rather than wrapping lines as prose.      |
+| DRHP            | Long-form IPO narrative: business, risk factors, industry, offer details           | Very long narrative with repeating headings. Fixed small windows fragment arguments; huge windows drown retrieval. Needs heading-aware narrative chunks (risk factor as a unit where possible) so citations stay specific.    |
+| SEBI regulation | Clause-numbered legal text                                                         | Legal numbering (`regulation 2(1)(a)`, provisos, explanations) is the retrieval key. Flattening to paragraphs breaks cross-references. Chunk on clause/sub-clause boundaries and keep citation-ready identifiers in metadata. |
+
+
+
 
 ## Planned tech stack
 
-| Choice | Why |
-|--------|-----|
-| FastAPI | Thin, typed HTTP layer for the research API; easy to test independently of the UI. |
-| Groq / Llama | Fast, inexpensive generation for iterative eval loops without hosting a local LLM. |
-| sentence-transformers | Local, reproducible dense embeddings so index quality is not tied to a paid embed API. |
-| Chroma | Lightweight persistent vector store that fits a small corpus and local/dev-first workflow. |
-| rank_bm25 | Lexical baseline for hybrid retrieval; strong on clause numbers, scheme names, and legal phrasing. |
-| RAGAS | Standard RAG metrics (faithfulness, context precision/recall) for comparable ablation runs. |
-| Streamlit | Fast chat UX for citations and qualitative inspection of retrieval, not a product frontend rewrite. |
-| Render | Host the FastAPI service with a conventional Python deploy path. |
-| Streamlit Cloud | Host the UI separately so API and chat can scale/fail independently. |
+
+| Choice                | Why                                                                                                 |
+| --------------------- | --------------------------------------------------------------------------------------------------- |
+| FastAPI               | Thin, typed HTTP layer for the research API; easy to test independently of the UI.                  |
+| Groq / Llama          | Fast, inexpensive generation for iterative eval loops without hosting a local LLM.                  |
+| sentence-transformers | Local, reproducible dense embeddings so index quality is not tied to a paid embed API.              |
+| Chroma                | Lightweight persistent vector store that fits a small corpus and local/dev-first workflow.          |
+| rank_bm25             | Lexical baseline for hybrid retrieval; strong on clause numbers, scheme names, and legal phrasing.  |
+| RAGAS                 | Standard RAG metrics (faithfulness, context precision/recall) for comparable ablation runs.         |
+| Streamlit             | Fast chat UX for citations and qualitative inspection of retrieval, not a product frontend rewrite. |
+| Render                | Host the FastAPI service with a conventional Python deploy path.                                    |
+| Streamlit Cloud       | Host the UI separately so API and chat can scale/fail independently.                                |
+
+
+
 
 ## Build phases
 
@@ -87,6 +97,8 @@ Living checklist. All items start unchecked.
 - [ ] **Phase 5 — Chat UX:** Streamlit research chat over the API, showing answers and source chunks.
 - [ ] **Phase 6 — Production hardening:** Config, logging, error handling, tests, and CI that match the real pipeline.
 - [ ] **Phase 7 — Deploy & document:** Render + Streamlit Cloud, data-source log, and the full README.
+
+
 
 ## Disclaimer
 
