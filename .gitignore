@@ -37,6 +37,7 @@ htmlcov/
 # Processed embeddings / chunks (keep the folder)
 data/processed/*
 !data/processed/.gitkeep
+data/chroma/
 
 # Eval artifacts (keep the folder)
 eval/results/*

@@ -1,4 +1,4 @@
-"""Pydantic models for ingested documents and retrieval chunks."""
+"""Pydantic models for ingested documents, retrieval, and the research API."""
 
 from __future__ import annotations
 
@@ -63,3 +63,25 @@ class Chunk(BaseModel):
     page_number: str
     section_heading: str | None = None
     chunk_type: ChunkType
+
+
+class RetrievedChunk(BaseModel):
+    """A chunk returned by dense search, with a similarity score in [0, 1]."""
+
+    chunk: Chunk
+    score: float
+
+
+class Citation(BaseModel):
+    source_document: str
+    document_type: str
+    page_number: str
+
+
+class ResearchRequest(BaseModel):
+    query: str = Field(min_length=1)
+
+
+class ResearchResponse(BaseModel):
+    answer: str
+    citations: list[Citation] = Field(default_factory=list)

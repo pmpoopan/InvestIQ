@@ -1,18 +1,19 @@
-"""Research query API routes.
+"""Research query API: POST /api/research."""
 
-Phase 2 will expose a query endpoint that runs the baseline RAG chain and
-returns an answer plus citations.
-"""
+from __future__ import annotations
 
-from fastapi import APIRouter
+from fastapi import APIRouter, HTTPException
 
-router = APIRouter(prefix="/research", tags=["research"])
+from app.generation.rag_chain import RagUnavailableError, run_rag
+from app.models.schemas import ResearchRequest, ResearchResponse
+
+router = APIRouter(tags=["research"])
 
 
-@router.post("/query")
-def query_research() -> dict:
-    """Run a research query over ingested documents.
-
-    TODO(Phase 2): accept a query payload and call the RAG chain.
-    """
-    pass
+@router.post("/api/research", response_model=ResearchResponse)
+def query_research(payload: ResearchRequest) -> ResearchResponse:
+    """Run a research query over ingested documents."""
+    try:
+        return run_rag(payload.query)
+    except RagUnavailableError as exc:
+        raise HTTPException(status_code=503, detail=str(exc)) from exc

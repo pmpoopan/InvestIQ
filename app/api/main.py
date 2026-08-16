@@ -1,18 +1,23 @@
-"""FastAPI application entrypoint.
+"""FastAPI application entrypoint."""
 
-Phase 2 will mount research routes and shared settings. Later phases add
-guardrails, health checks, and production hardening.
-"""
+from __future__ import annotations
 
 from fastapi import FastAPI
 
-app = FastAPI(title="InvestIQ", version="0.0.0")
+from app.api.routes.research import router as research_router
+
+app = FastAPI(title="InvestIQ", version="0.2.0")
+app.include_router(research_router)
 
 
 @app.get("/health")
 def health() -> dict:
-    """Liveness stub.
+    """Liveness; includes Chroma size when the index exists."""
+    status: dict = {"status": "ok"}
+    try:
+        from app.retrieval.vector_store import get_collection
 
-    TODO(Phase 2): expand with dependency checks once retrieval/generation exist.
-    """
-    return {"status": "ok"}
+        status["chunk_count"] = get_collection().count()
+    except Exception:
+        status["chunk_count"] = None
+    return status
